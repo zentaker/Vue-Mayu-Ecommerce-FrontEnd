@@ -1,0 +1,97 @@
+perfecto, aquí va el documento técnico limpio, sin código, con la descripción completa de lo que se debe desarrollar en Vue 3 + Vite + TypeScript, pensado para Replit y con enfoque mobile-first.
+
+⸻
+
+Documento técnico del proyecto: Apricot Outfits (v1.0)
+
+1. Objetivo general
+
+Construir una aplicación web mobile-first, responsiva y ligera, pensada como una app tipo boutique. Su estructura debe priorizar la navegación en dispositivos móviles y una experiencia fluida de tipo “feed” con estética de Pinterest. El sistema se desarrollará en Vue 3 (Composition API) con Vite + TypeScript.
+
+2. Arquitectura general
+	•	Framework: Vue 3 (Composition API, Single File Components)
+	•	Lenguaje: TypeScript
+	•	Bundler: Vite
+	•	Estado global: Pinia (para catálogos, filtros, sesión de usuario)
+	•	Ruteo: Vue Router
+	•	Diseño: Mobile-first responsive (sin barra inferior fija, solo menú hamburguesa)
+	•	Estilos: CSS moderno / SCSS sin librerías externas
+	•	Hosting: Replit Node 20 LTS
+
+3. Estructura funcional
+
+3.1 Layout principal
+
+Un layout contenedor (“ShellLayout”) con:
+	•	Encabezado fijo: contiene el logotipo y el botón de menú hamburguesa.
+	•	Menú lateral off-canvas: se despliega desde el borde izquierdo; muestra las secciones principales (Inicio, Catálogo, Rewards, Cuenta).
+	•	Área principal de contenido: muestra las vistas según la ruta activa.
+	•	Diseño mobile-first: optimizado para pantallas verticales < 768 px y adaptado gradualmente hasta desktop.
+
+3.2 Rutas / Páginas
+	1.	Home (/)
+	•	Feed tipo Pinterest (masonry de 2 columnas).
+	•	Cada “card” muestra 2 imágenes combinadas (outfits).
+	•	Enfocado en scroll y exploración.
+	2.	Catálogo (/catalog)
+	•	Listado de productos completo.
+	•	Panel lateral de filtros: categoría, color, talla, rango de precio, disponibilidad.
+	•	Filtros reactivos, sin recarga, usando signals/estado de Pinia.
+	•	Diseño grid (2 columnas móvil, 3+ desktop).
+	3.	Rewards (/rewards)
+	•	Área de fidelización / VIP Club.
+	•	Sección de promociones, puntos, niveles, beneficios.
+	•	Diseño simple, texto e iconografía.
+	4.	Cuenta (/account)
+	•	Perfil de usuario, configuración de cuenta, dirección y notificaciones.
+	•	Acceso a cerrar sesión, preferencias, privacidad.
+	5.	(Opcional) Checkout demo
+	•	Maqueta simple de flujo de pago.
+
+3.3 Componentes principales
+	•	HeaderBar: barra superior con logo + botón menú.
+	•	OffCanvasMenu: panel lateral navegable.
+	•	MasonryFeed: distribución vertical tipo Pinterest (2 columnas).
+	•	ProductCard: tarjeta de producto con imagen, nombre, precio, color.
+	•	FiltersPanel: panel lateral de filtros en catálogo.
+
+3.4 Store global (Pinia)
+	•	catalogStore:
+	•	Contiene lista de productos.
+	•	Guarda filtros activos.
+	•	Provee getters / computed para resultados filtrados.
+	•	userStore:
+	•	Información de usuario, nivel VIP, autenticación básica.
+
+4. Diseño / UI
+	•	Paleta: blancos, neutros cálidos, acentos terracota.
+	•	Tipografía: Inter / system UI.
+	•	Estructura mobile-first:
+	•	Grillas fluidas con CSS Grid.
+	•	Breakpoints: 480 / 768 / 1024 px.
+	•	Columnas automáticas para feed y catálogo.
+	•	Interacción: transiciones suaves, focus visible, sin elementos pequeños difíciles de tocar.
+
+5. Integraciones futuras
+	•	Google Ads dinámico: mediante carga condicional (solo navegador).
+	•	Analytics / Consent banner.
+	•	SSR o Nuxt 3 upgrade para SEO y ads.
+
+6. Requisitos de maqueta mínima
+	1.	Layout funcional con menú hamburguesa.
+	2.	Home con feed masonry y 2 imágenes por card.
+	3.	Catálogo con panel de filtros (reales o simulados).
+	4.	Páginas Rewards y Account con contenido placeholder.
+	5.	Mobile-first responsivo en todas las vistas.
+
+7. Criterios de entrega (Replit)
+	•	Proyecto Vue 3 + Vite + TypeScript instalado y corriendo.
+	•	Navegación funcional entre rutas.
+	•	Diseño base aplicado.
+	•	Estado y filtros simulados con Pinia.
+	•	Sin dependencias externas innecesarias.
+	•	Documentación de rutas, componentes y stores.
+
+⸻
+
+¿quieres que te prepare también el brief de estilo visual (colores, tipografía, spacing, motion) para que la IA de Replit genere el CSS acorde al look que buscas?
