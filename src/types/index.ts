@@ -13,10 +13,12 @@ export interface Product {
 
 export interface Outfit {
   id: string
-  image1: string
-  image2: string
-  products: string[]
+  imageUrl: string
   title: string
+  userName: string
+  userAvatar: string
+  likes: number
+  description?: string
 }
 
 export interface User {

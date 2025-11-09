@@ -97,31 +97,75 @@ export const useCatalogStore = defineStore('catalog', () => {
   const outfits = ref<Outfit[]>([
     {
       id: 'o1',
-      image1: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400',
-      image2: 'https://images.unsplash.com/photo-1594633313593-bab3825d0caf?w=400',
-      products: ['1', '2'],
-      title: 'Look Terracota Casual'
+      imageUrl: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop',
+      title: 'Look terracota de otoño',
+      userName: 'María García',
+      userAvatar: 'https://i.pravatar.cc/150?img=1',
+      likes: 429,
+      description: 'Perfecto para días frescos'
     },
     {
       id: 'o2',
-      image1: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400',
-      image2: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=400',
-      products: ['3', '5'],
-      title: 'Elegancia Neutral'
+      imageUrl: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&h=900&fit=crop',
+      title: 'Elegancia minimalista',
+      userName: 'Ana López',
+      userAvatar: 'https://i.pravatar.cc/150?img=5',
+      likes: 892,
+      description: 'Menos es más'
     },
     {
       id: 'o3',
-      image1: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400',
-      image2: 'https://images.unsplash.com/photo-1542272454315-7f6fabf2b778?w=400',
-      products: ['4', '8'],
-      title: 'Cómodo y Chic'
+      imageUrl: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=750&fit=crop',
+      title: 'Casual chic',
+      userName: 'Carmen Ruiz',
+      userAvatar: 'https://i.pravatar.cc/150?img=9',
+      likes: 234,
+      description: 'Para el día a día'
     },
     {
       id: 'o4',
-      image1: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=400',
-      image2: 'https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=400',
-      products: ['7', '6'],
-      title: 'Estilo Bohemio'
+      imageUrl: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&h=850&fit=crop',
+      title: 'Vestido de noche',
+      userName: 'Laura Sánchez',
+      userAvatar: 'https://i.pravatar.cc/150?img=10',
+      likes: 1205,
+      description: 'Elegante y sofisticado'
+    },
+    {
+      id: 'o5',
+      imageUrl: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&h=800&fit=crop',
+      title: 'Estilo urbano',
+      userName: 'Sofía Martín',
+      userAvatar: 'https://i.pravatar.cc/150?img=20',
+      likes: 567,
+      description: 'Moda de calle'
+    },
+    {
+      id: 'o6',
+      imageUrl: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=900&fit=crop',
+      title: 'Outfit bohemio',
+      userName: 'Elena Díaz',
+      userAvatar: 'https://i.pravatar.cc/150?img=24',
+      likes: 782,
+      description: 'Vibes de verano'
+    },
+    {
+      id: 'o7',
+      imageUrl: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=750&fit=crop',
+      title: 'Look profesional',
+      userName: 'Isabel Torres',
+      userAvatar: 'https://i.pravatar.cc/150?img=27',
+      likes: 345,
+      description: 'Para la oficina'
+    },
+    {
+      id: 'o8',
+      imageUrl: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&h=850&fit=crop',
+      title: 'Comodidad total',
+      userName: 'Patricia Flores',
+      userAvatar: 'https://i.pravatar.cc/150?img=32',
+      likes: 623,
+      description: 'Relax en casa'
     }
   ])
 
