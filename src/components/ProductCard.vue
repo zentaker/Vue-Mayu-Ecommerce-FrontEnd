@@ -33,14 +33,13 @@
 
 <script setup lang="ts">
 import type { Product } from '@/types'
+import { useCartStore } from '@/stores/cartStore'
 
 const props = defineProps<{
   product: Product
 }>()
 
-const emit = defineEmits<{
-  'add-to-cart': [product: Product]
-}>()
+const cartStore = useCartStore()
 
 function getColorCode(color: string): string {
   const colorMap: Record<string, string> = {
@@ -57,8 +56,7 @@ function getColorCode(color: string): string {
 
 function addToCart() {
   if (props.product.available) {
-    emit('add-to-cart', props.product)
-    console.log('Added to cart:', props.product.name)
+    cartStore.addToCart(props.product)
   }
 }
 </script>

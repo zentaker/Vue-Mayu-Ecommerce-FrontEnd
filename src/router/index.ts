@@ -4,6 +4,7 @@ import CatalogView from '@/views/CatalogView.vue'
 import RewardsView from '@/views/RewardsView.vue'
 import AccountView from '@/views/AccountView.vue'
 import PostDetailView from '@/views/PostDetailView.vue'
+import ProductDetailView from '@/views/ProductDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/catalog',
       name: 'catalog',
       component: CatalogView
+    },
+    {
+      path: '/product/:id',
+      name: 'product-detail',
+      component: ProductDetailView
     },
     {
       path: '/rewards',

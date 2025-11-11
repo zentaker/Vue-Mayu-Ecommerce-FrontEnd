@@ -5,6 +5,7 @@
     <main class="main-content">
       <router-view />
     </main>
+    <FloatingCart />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import { ref } from 'vue'
 import HeaderBar from '@/components/HeaderBar.vue'
 import OffCanvasMenu from '@/components/OffCanvasMenu.vue'
+import FloatingCart from '@/components/FloatingCart.vue'
 
 const menuOpen = ref(false)
 </script>
