@@ -183,18 +183,29 @@ const activeFiltersCount = computed(() => {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  column-count: 2;
+  column-gap: 0.5rem;
   
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    column-count: 2;
+    column-gap: 0.75rem;
   }
   
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    column-count: 3;
+    column-gap: 1rem;
+  }
+  
+  > * {
+    margin-bottom: 0.5rem;
+    
+    @media (min-width: 768px) {
+      margin-bottom: 0.75rem;
+    }
+    
+    @media (min-width: 1024px) {
+      margin-bottom: 1rem;
+    }
   }
 }
 
