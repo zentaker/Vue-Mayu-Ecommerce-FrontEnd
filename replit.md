@@ -160,6 +160,14 @@ npm run build
 ```
 
 ## Recent Changes
+- 2025-11-11: **Latest UX/UI Improvements**
+  - FloatingCart now only visible in catalog view (not on home, product detail, or other pages)
+  - Added '+' button on home feed cards for outfit image upload functionality
+  - Renamed navigation "Cuenta" to "Perfil" (route remains /account)
+  - Added settings gear icon in header (visible only to admins) for admin panel access
+  - Fixed ProductDetailView image size issue with max-height constraints
+  - Fixed FeedCard typography - username and likes now fit on single line
+  - Added "Mi Feed" section in Profile view for users to manage their personal outfit posts
 - 2025-11-11: Implemented shopping cart with floating button, animations, and drawer UI
 - Added product detail view with image gallery, size selector, and add to cart
 - Integrated Firebase SDK (auth, firestore, storage services)
