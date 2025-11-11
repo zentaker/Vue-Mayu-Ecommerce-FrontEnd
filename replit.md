@@ -110,9 +110,24 @@ src/
 ### Catalog Store
 - Products array with sample data
 - Outfits array for masonry feed
-- Active filters state
-- Computed filtered products
+- Active filters state with sort options
+- Computed filtered and sorted products
 - Filter setters and reset function
+- Sort options: relevance, trending, price-asc, price-desc, promotions
+
+### Cart Store
+- Shopping cart items with quantity tracking
+- Size-specific item management
+- Total price and item count calculations
+- Add/remove/update quantity functions
+- Cart drawer open/close state
+
+### Auth Store
+- Current user profile with role (user/admin)
+- Authentication state management
+- Sign in/out functionality
+- Firebase auth integration
+- Loading and error states
 
 ### User Store
 - Current user data
@@ -123,9 +138,13 @@ src/
 
 ## Routes
 - `/` - Home (Masonry outfit feed)
+- `/post/:id` - Post detail view
 - `/catalog` - Product catalog with filters
+- `/product/:id` - Product detail view
 - `/rewards` - VIP rewards program
 - `/account` - User account settings
+- `/login` - Authentication page
+- `/admin` - Admin panel (requires admin role)
 
 ## Development
 
@@ -141,6 +160,14 @@ npm run build
 ```
 
 ## Recent Changes
+- 2025-11-11: Implemented shopping cart with floating button, animations, and drawer UI
+- Added product detail view with image gallery, size selector, and add to cart
+- Integrated Firebase SDK (auth, firestore, storage services)
+- Created authentication system with admin/user roles
+- Built admin panel with product/order/outfit management tabs
+- Added sort filters: relevancia, tendencia, precio (asc/desc), promociones
+- Created login page with demo credentials (admin@google.com / 123456)
+- Fixed cart/product data flow and image property consistency
 - 2025-11-09: Initial project setup with complete MVP features
 - Mobile-first responsive design implemented
 - All core pages and components created
@@ -163,13 +190,41 @@ npm run build
 - **Mobile-first CSS**: Optimized for mobile devices, enhanced for desktop
 - **Path aliases**: Using `@/` for cleaner imports
 
+## Firebase Integration
+
+### Configuration
+Firebase is integrated but requires proper credentials to be configured in Replit Secrets:
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+- `VITE_FIREBASE_MEASUREMENT_ID`
+
+### Services
+- **auth.service.ts**: User authentication, sign in/out, user profiles
+- **firestore.service.ts**: Database CRUD for products, outfits, orders
+- **storage.service.ts**: Image upload/delete for products, outfits, avatars
+
+### Demo Admin User
+When Firebase is properly configured, a demo admin user is automatically created:
+- Email: admin@google.com
+- Password: 123456
+- Role: admin
+
 ## Future Enhancements
-- Real product data integration with backend API
-- Shopping cart and checkout flow
-- User authentication with OAuth
+- ~~Shopping cart and checkout flow~~ ✅ Completed
+- ~~User authentication with admin roles~~ ✅ Completed
+- Real product data synchronization with Firestore
+- Product image uploads via Firebase Storage
+- Checkout flow with payment processing (Stripe integration)
+- Order management and tracking
 - Google Ads integration
 - Analytics and consent management
 - Server-side rendering with Nuxt 3 for SEO
-- Payment processing (Stripe integration)
 - Product image optimization
 - PWA capabilities for mobile installation
+- Email notifications for orders
+- User wishlist feature
+- Product reviews and ratings

@@ -66,6 +66,17 @@
         <span>Solo disponibles</span>
       </label>
     </div>
+
+    <div class="filter-group">
+      <label class="filter-label">Ordenar por</label>
+      <select v-model="localFilters.sortBy" @change="updateFilters">
+        <option value="relevance">Relevancia</option>
+        <option value="trending">Tendencia</option>
+        <option value="price-asc">Precio: Menor a Mayor</option>
+        <option value="price-desc">Precio: Mayor a Menor</option>
+        <option value="promotions">Promociones</option>
+      </select>
+    </div>
   </aside>
 </template>
 

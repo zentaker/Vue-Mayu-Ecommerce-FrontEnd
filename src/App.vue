@@ -10,12 +10,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import HeaderBar from '@/components/HeaderBar.vue'
 import OffCanvasMenu from '@/components/OffCanvasMenu.vue'
 import FloatingCart from '@/components/FloatingCart.vue'
+import { useAuthStore } from '@/stores/authStore'
 
 const menuOpen = ref(false)
+const authStore = useAuthStore()
+
+onMounted(async () => {
+  // Initialize auth (will gracefully fail if Firebase is not configured)
+  try {
+    await authStore.initializeAuth()
+  } catch (error) {
+    console.log('Auth initialization skipped - Firebase not configured')
+  }
+})
 </script>
 
 <style scoped>

@@ -174,11 +174,12 @@ export const useCatalogStore = defineStore('catalog', () => {
     color: '',
     size: '',
     priceRange: [0, 100],
-    availableOnly: false
+    availableOnly: false,
+    sortBy: 'relevance'
   })
 
   const filteredProducts = computed(() => {
-    return products.value.filter((product: Product) => {
+    let filtered = products.value.filter((product: Product) => {
       if (filters.value.category && product.category !== filters.value.category) return false
       if (filters.value.color && product.color !== filters.value.color) return false
       if (filters.value.size && !product.size.includes(filters.value.size)) return false
@@ -186,6 +187,23 @@ export const useCatalogStore = defineStore('catalog', () => {
       if (filters.value.availableOnly && !product.available) return false
       return true
     })
+
+    // Apply sorting
+    switch (filters.value.sortBy) {
+      case 'price-asc':
+        return [...filtered].sort((a, b) => a.price - b.price)
+      case 'price-desc':
+        return [...filtered].sort((a, b) => b.price - a.price)
+      case 'trending':
+        // Sort by name length as proxy for trending (in real app, would use engagement metrics)
+        return [...filtered].sort((a, b) => b.name.length - a.name.length)
+      case 'promotions':
+        // Show unavailable items first as "promotional" (in real app, would filter by promotion flag)
+        return [...filtered].sort((a, b) => (a.available === b.available ? 0 : a.available ? 1 : -1))
+      case 'relevance':
+      default:
+        return filtered
+    }
   })
 
   const categories = computed(() => {
@@ -213,7 +231,8 @@ export const useCatalogStore = defineStore('catalog', () => {
       color: '',
       size: '',
       priceRange: [0, 100],
-      availableOnly: false
+      availableOnly: false,
+      sortBy: 'relevance'
     }
   }
 

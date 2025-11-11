@@ -39,10 +39,13 @@ export interface User {
   }
 }
 
+export type SortOption = 'relevance' | 'trending' | 'price-asc' | 'price-desc' | 'promotions'
+
 export interface Filters {
   category: string
   color: string
   size: string
   priceRange: [number, number]
   availableOnly: boolean
+  sortBy: SortOption
 }
