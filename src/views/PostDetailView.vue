@@ -244,31 +244,36 @@ function addComment() {
 .user-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   padding: 1rem;
   border-bottom: 1px solid #e0d8cc;
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .user-details {
   flex: 1;
+  min-width: 0;
 }
 
 .user-name {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: #4a4238;
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .post-time {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: #7c6a5b;
   margin: 0;
 }
@@ -277,12 +282,14 @@ function addComment() {
   background: #c67b5c;
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.875rem;
   border-radius: 6px;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  flex-shrink: 0;
+  white-space: nowrap;
   
   &:hover {
     background: #b56a4d;
