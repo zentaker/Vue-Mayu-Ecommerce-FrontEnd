@@ -51,7 +51,7 @@
             :key="`${item.product.id}-${item.selectedSize}`" 
             class="cart-item"
           >
-            <img :src="item.product.image" :alt="item.product.name" class="cart-item-image" />
+            <img :src="item.product.imageUrl" :alt="item.product.name" class="cart-item-image" />
             <div class="cart-item-details">
               <h3 class="cart-item-name">{{ item.product.name }}</h3>
               <p v-if="item.selectedSize" class="cart-item-size">Talla: {{ item.selectedSize }}</p>

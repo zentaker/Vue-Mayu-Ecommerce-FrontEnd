@@ -144,6 +144,9 @@ const product = computed(() => {
 onMounted(() => {
   if (product.value) {
     currentImage.value = product.value.imageUrl
+  } else {
+    // Product not found, redirect to catalog
+    router.push('/catalog')
   }
 })
 
