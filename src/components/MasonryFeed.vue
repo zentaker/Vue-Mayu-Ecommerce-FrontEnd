@@ -22,15 +22,6 @@
         </div>
       </router-link>
       <button 
-        class="upload-btn" 
-        @click.prevent="handleUpload(outfit.id)" 
-        aria-label="Subir imagen de outfit"
-      >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <button 
         class="like-btn" 
         @click="handleLike(outfit.id)" 
         :aria-label="`Dar like. ${formatLikes(outfit.likes)} personas ya reaccionaron`"
@@ -53,11 +44,6 @@ defineProps<{
 
 function handleLike(id: string) {
   console.log('Liked outfit:', id)
-}
-
-function handleUpload(id: string) {
-  console.log('Upload image for outfit:', id)
-  // TODO: Implement image upload functionality
 }
 
 function formatLikes(count: number): string {
@@ -187,40 +173,6 @@ function formatLikes(count: number): string {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.upload-btn {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(198, 123, 92, 0.95);
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  z-index: 2;
-  
-  &:hover {
-    background: #b56a4d;
-    transform: scale(1.05);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  &:focus {
-    outline: 2px solid #c67b5c;
-    outline-offset: 2px;
-  }
-  
-  &:active {
-    transform: scale(0.95);
-  }
 }
 
 .like-btn {

@@ -246,24 +246,27 @@ function closeImageModal() {
 }
 
 .main-image-wrapper {
-  aspect-ratio: 3/4;
-  max-height: 600px;
   border-radius: 16px;
   overflow: hidden;
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   cursor: zoom-in;
-  
-  @media (max-width: 767px) {
-    max-height: 500px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: clamp(360px, 70vh, 550px);
+  object-fit: contain;
   transition: transform 0.3s;
+  display: block;
+
+  @media (max-width: 767px) {
+    max-height: clamp(300px, 60vh, 450px);
+  }
 
   &:hover {
     transform: scale(1.02);
