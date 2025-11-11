@@ -25,7 +25,7 @@
         </router-link>
         <router-link to="/account" @click="close" class="nav-item">
           <span class="icon">👤</span>
-          <span>Mi Cuenta</span>
+          <span>Perfil</span>
         </router-link>
       </nav>
     </aside>

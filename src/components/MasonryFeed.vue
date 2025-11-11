@@ -168,7 +168,7 @@ function formatLikes(count: number): string {
 }
 
 .user-name {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: #7c6a5b;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -213,7 +213,7 @@ function formatLikes(count: number): string {
 }
 
 .like-count {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
   min-width: 20px;
   text-align: left;

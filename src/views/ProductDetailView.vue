@@ -242,15 +242,21 @@ function closeImageModal() {
   position: sticky;
   top: 80px;
   height: fit-content;
+  max-height: calc(100vh - 120px);
 }
 
 .main-image-wrapper {
   aspect-ratio: 3/4;
+  max-height: 600px;
   border-radius: 16px;
   overflow: hidden;
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   cursor: zoom-in;
+  
+  @media (max-width: 767px) {
+    max-height: 500px;
+  }
 }
 
 .main-image {

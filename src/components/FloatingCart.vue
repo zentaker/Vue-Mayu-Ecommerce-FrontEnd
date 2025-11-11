@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isInCatalog">
     <!-- Floating Cart Button -->
     <button 
       class="floating-cart-btn" 
@@ -97,9 +97,16 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useCartStore } from '@/stores/cartStore'
 
+const route = useRoute()
 const cartStore = useCartStore()
+
+const isInCatalog = computed(() => {
+  return route.path.startsWith('/catalog') || route.path.startsWith('/product/')
+})
 </script>
 
 <style scoped lang="scss">
