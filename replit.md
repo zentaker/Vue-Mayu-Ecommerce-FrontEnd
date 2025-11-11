@@ -160,7 +160,19 @@ npm run build
 ```
 
 ## Recent Changes
-- 2025-11-11: **Latest UX Refinements**
+- 2025-11-11: **Product Reviews System**
+  - Implemented complete review system in ProductDetailView
+  - Added Review type with fields: userId, userName, userAvatar, rating (1-5), comment, images[], date
+  - Updated Product type with optional rating, reviewCount, and reviews[] fields
+  - Added sample reviews to product ID '1' (3 reviews with mixed ratings and user images)
+  - Created reviews UI section with:
+    - Rating summary card (large number + stars + review count)
+    - Individual review cards with avatar, name, stars, relative date, comment
+    - User-uploaded product image gallery (clickable for modal view)
+  - Implemented formatDate() for Spanish relative dates ("Hoy", "Ayer", "Hace X días")
+  - Fixed review image modal to use separate state from product gallery (prevents image swapping bug)
+  - Reviews section appears below product details, requires scrolling to view
+- 2025-11-11: **Earlier UX Refinements**
   - Removed white box from like buttons in feed - now clean white icon/text with dark shadows for legibility
   - Fixed ProductDetailView image sticky positioning - now only sticky on desktop (≥1024px), normal on mobile/tablet
   - Improved accessibility with terracota focus outline on like buttons
