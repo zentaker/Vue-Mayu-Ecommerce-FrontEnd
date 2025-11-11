@@ -105,7 +105,7 @@ const route = useRoute()
 const cartStore = useCartStore()
 
 const isInCatalog = computed(() => {
-  return route.path.startsWith('/catalog') || route.path.startsWith('/product/')
+  return route.path === '/catalog'
 })
 </script>
 
