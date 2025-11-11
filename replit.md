@@ -160,6 +160,10 @@ npm run build
 ```
 
 ## Recent Changes
+- 2025-11-11: **Latest UX Refinements**
+  - Removed white box from like buttons in feed - now clean white icon/text with dark shadows for legibility
+  - Fixed ProductDetailView image sticky positioning - now only sticky on desktop (≥1024px), normal on mobile/tablet
+  - Improved accessibility with terracota focus outline on like buttons
 - 2025-11-11: **Critical UX/UI Fixes and Upload Feature**
   - Fixed ProductDetailView image sizing with responsive max-height using clamp() and object-fit: contain
   - Removed individual '+' buttons from feed cards (were incorrectly placed on each card)
