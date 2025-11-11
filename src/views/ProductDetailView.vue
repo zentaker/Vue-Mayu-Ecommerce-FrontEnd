@@ -96,6 +96,47 @@
       </div>
     </div>
 
+    <!-- Reviews Section -->
+    <div v-if="product && product.reviews && product.reviews.length > 0" class="reviews-section">
+      <div class="reviews-header">
+        <h2>Valoraciones de Clientes</h2>
+        <div class="rating-summary">
+          <div class="rating-number">{{ product.rating?.toFixed(1) }}</div>
+          <div class="rating-details">
+            <div class="stars-display">
+              <svg v-for="star in 5" :key="star" class="star" :class="{ filled: star <= Math.round(product.rating || 0) }" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <p class="review-count">{{ product.reviewCount }} valoraciones</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-list">
+        <article v-for="review in product.reviews" :key="review.id" class="review-card">
+          <div class="review-header">
+            <img :src="review.userAvatar" :alt="review.userName" class="reviewer-avatar" />
+            <div class="reviewer-info">
+              <h4 class="reviewer-name">{{ review.userName }}</h4>
+              <div class="review-meta">
+                <div class="review-stars">
+                  <svg v-for="star in 5" :key="star" class="star" :class="{ filled: star <= review.rating }" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                </div>
+                <span class="review-date">{{ formatDate(review.date) }}</span>
+              </div>
+            </div>
+          </div>
+          <p class="review-comment">{{ review.comment }}</p>
+          <div v-if="review.images && review.images.length > 0" class="review-images">
+            <img v-for="(image, idx) in review.images" :key="idx" :src="image" alt="Foto del producto" class="review-image" @click="openReviewImage(image)" />
+          </div>
+        </article>
+      </div>
+    </div>
+
     <!-- Image Modal -->
     <Transition name="modal">
       <div v-if="imageModalOpen" class="image-modal" @click="closeImageModal">
@@ -105,7 +146,7 @@
             <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
         </button>
-        <img :src="currentImage" :alt="product?.name" class="modal-image" @click.stop />
+        <img :src="reviewModalImage || currentImage" :alt="product?.name" class="modal-image" @click.stop />
       </div>
     </Transition>
 
@@ -184,11 +225,34 @@ function handleAddToCart() {
 }
 
 function openImageModal() {
+  reviewModalImage.value = null
+  imageModalOpen.value = true
+}
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString)
+  const now = new Date()
+  const diffTime = Math.abs(now.getTime() - date.getTime())
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
+  
+  if (diffDays === 0) return 'Hoy'
+  if (diffDays === 1) return 'Ayer'
+  if (diffDays < 7) return `Hace ${diffDays} días`
+  if (diffDays < 30) return `Hace ${Math.floor(diffDays / 7)} semanas`
+  
+  return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
+}
+
+const reviewModalImage = ref<string | null>(null)
+
+function openReviewImage(imageUrl: string) {
+  reviewModalImage.value = imageUrl
   imageModalOpen.value = true
 }
 
 function closeImageModal() {
   imageModalOpen.value = false
+  reviewModalImage.value = null
 }
 </script>
 
@@ -545,5 +609,168 @@ function closeImageModal() {
 .toast-leave-to {
   opacity: 0;
   transform: translateX(-50%) translateY(20px);
+}
+
+.reviews-section {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding: 0 1rem 3rem;
+  
+  @media (min-width: 768px) {
+    padding: 0 2rem 4rem;
+  }
+}
+
+.reviews-header {
+  margin-bottom: 2rem;
+  
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #4a4238;
+    margin: 0 0 1.5rem;
+  }
+}
+
+.rating-summary {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #fff5f0;
+  border-radius: 12px;
+}
+
+.rating-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #c67b5c;
+  line-height: 1;
+}
+
+.rating-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stars-display {
+  display: flex;
+  gap: 0.25rem;
+  
+  .star {
+    color: #e0d8cc;
+    
+    &.filled {
+      color: #f59e0b;
+    }
+  }
+}
+
+.review-count {
+  font-size: 0.875rem;
+  color: #7c6a5b;
+  margin: 0;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.review-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e0d8cc;
+  transition: box-shadow 0.2s;
+  
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.review-header {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.reviewer-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.reviewer-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.reviewer-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4a4238;
+  margin: 0 0 0.5rem;
+}
+
+.review-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.review-stars {
+  display: flex;
+  gap: 0.125rem;
+  
+  .star {
+    color: #e0d8cc;
+    
+    &.filled {
+      color: #f59e0b;
+    }
+  }
+}
+
+.review-date {
+  font-size: 0.875rem;
+  color: #7c6a5b;
+}
+
+.review-comment {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #4a4238;
+  margin: 0 0 1rem;
+}
+
+.review-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+.review-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 }
 </style>

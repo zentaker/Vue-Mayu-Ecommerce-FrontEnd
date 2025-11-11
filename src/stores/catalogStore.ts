@@ -13,7 +13,40 @@ export const useCatalogStore = defineStore('catalog', () => {
       size: ['XS', 'S', 'M', 'L'],
       available: true,
       imageUrl: 'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400',
-      description: 'Blusa elegante con corte moderno'
+      description: 'Blusa elegante con corte moderno',
+      rating: 4.5,
+      reviewCount: 12,
+      reviews: [
+        {
+          id: 'r1',
+          userId: 'u1',
+          userName: 'Ana Martínez',
+          userAvatar: 'https://i.pravatar.cc/150?img=10',
+          rating: 5,
+          comment: 'Me encanta! La tela es muy suave y el color es exactamente como en la foto. Muy cómoda.',
+          images: ['https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=300'],
+          date: '2025-11-05'
+        },
+        {
+          id: 'r2',
+          userId: 'u2',
+          userName: 'Laura Sánchez',
+          userAvatar: 'https://i.pravatar.cc/150?img=20',
+          rating: 4,
+          comment: 'Muy bonita, aunque me queda un poco grande. Recomendaría pedir una talla menos.',
+          date: '2025-11-03'
+        },
+        {
+          id: 'r3',
+          userId: 'u3',
+          userName: 'Patricia Gómez',
+          userAvatar: 'https://i.pravatar.cc/150?img=30',
+          rating: 5,
+          comment: 'Perfecta para el otoño. La he combinado con pantalones beige y queda preciosa.',
+          images: ['https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300', 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=300'],
+          date: '2025-10-28'
+        }
+      ]
     },
     {
       id: '2',

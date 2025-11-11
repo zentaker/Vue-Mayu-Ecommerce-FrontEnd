@@ -1,3 +1,14 @@
+export interface Review {
+  id: string
+  userId: string
+  userName: string
+  userAvatar: string
+  rating: number
+  comment: string
+  images?: string[]
+  date: string
+}
+
 export interface Product {
   id: string
   name: string
@@ -9,6 +20,9 @@ export interface Product {
   imageUrl: string
   imageUrl2?: string
   description?: string
+  rating?: number
+  reviewCount?: number
+  reviews?: Review[]
 }
 
 export interface Outfit {
