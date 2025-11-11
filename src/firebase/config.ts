@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
-import { getAnalytics } from 'firebase/analytics'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -14,11 +13,29 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 }
 
-const app = initializeApp(firebaseConfig)
+// Check if Firebase is properly configured
+const isFirebaseConfigured = firebaseConfig.apiKey && 
+  firebaseConfig.projectId && 
+  firebaseConfig.apiKey.startsWith('AIza')
 
-export const auth = getAuth(app)
-export const db = getFirestore(app)
-export const storage = getStorage(app)
-export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null
+let app: any = null
+let auth: any = null
+let db: any = null
+let storage: any = null
 
+if (isFirebaseConfigured) {
+  try {
+    app = initializeApp(firebaseConfig)
+    auth = getAuth(app)
+    db = getFirestore(app)
+    storage = getStorage(app)
+    console.log('Firebase initialized successfully')
+  } catch (error) {
+    console.warn('Firebase initialization failed. App will work with local data only.')
+  }
+} else {
+  console.warn('Firebase not configured. App will work with local data only.')
+}
+
+export { auth, db, storage }
 export default app
