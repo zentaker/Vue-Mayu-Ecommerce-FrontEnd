@@ -3,6 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import CatalogView from '@/views/CatalogView.vue'
 import RewardsView from '@/views/RewardsView.vue'
 import AccountView from '@/views/AccountView.vue'
+import PostDetailView from '@/views/PostDetailView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/post/:id',
+      name: 'post-detail',
+      component: PostDetailView
     },
     {
       path: '/catalog',

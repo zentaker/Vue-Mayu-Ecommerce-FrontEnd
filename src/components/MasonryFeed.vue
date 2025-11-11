@@ -1,25 +1,37 @@
 <template>
   <div class="masonry-feed">
-    <div v-for="outfit in outfits" :key="outfit.id" class="feed-card">
-      <div class="card-image">
-        <img :src="outfit.imageUrl" :alt="outfit.title" loading="lazy" />
-      </div>
-      <div class="card-content">
-        <h3 class="card-title">{{ outfit.title }}</h3>
-        <div class="card-footer">
-          <div class="user-info">
-            <img :src="outfit.userAvatar" :alt="outfit.userName" class="user-avatar" />
-            <span class="user-name">{{ outfit.userName }}</span>
-          </div>
-          <button class="like-btn" @click.stop="handleLike(outfit.id)">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5" fill="none"/>
-            </svg>
-            <span class="like-count">{{ formatLikes(outfit.likes) }}</span>
-          </button>
+    <article v-for="outfit in outfits" :key="outfit.id" class="feed-card">
+      <router-link 
+        :to="`/post/${outfit.id}`"
+        class="card-link"
+        :aria-label="`Ver post de ${outfit.userName}: ${outfit.title}`"
+      >
+        <div class="card-image">
+          <img :src="outfit.imageUrl" :alt="outfit.title" loading="lazy" />
         </div>
-      </div>
-    </div>
+        <div class="card-content">
+          <h3 class="card-title">
+            {{ outfit.title }}
+          </h3>
+          <div class="card-footer">
+            <div class="user-info">
+              <img :src="outfit.userAvatar" :alt="outfit.userName" class="user-avatar" />
+              <span class="user-name">{{ outfit.userName }}</span>
+            </div>
+          </div>
+        </div>
+      </router-link>
+      <button 
+        class="like-btn" 
+        @click="handleLike(outfit.id)" 
+        :aria-label="`Dar like. ${formatLikes(outfit.likes)} personas ya reaccionaron`"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+        </svg>
+        <span class="like-count">{{ formatLikes(outfit.likes) }}</span>
+      </button>
+    </article>
   </div>
 </template>
 
@@ -44,54 +56,80 @@ function formatLikes(count: number): string {
 
 <style scoped lang="scss">
 .masonry-feed {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  column-count: 2;
+  column-gap: 0.5rem;
   padding: 0.5rem;
   
   @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+    column-count: 3;
+    column-gap: 0.75rem;
     padding: 0.75rem;
   }
   
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    column-count: 4;
+    column-gap: 1rem;
     padding: 1rem;
   }
 }
 
 .feed-card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.5rem;
   background: #ffffff;
+  border-radius: 8px;
+  overflow: visible;
+  position: relative;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  
+  @media (min-width: 768px) {
+    margin-bottom: 0.75rem;
+  }
+  
+  @media (min-width: 1024px) {
+    margin-bottom: 1rem;
+  }
+}
+
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
   
-  &:hover {
+  &:hover, &:focus {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+  
+  &:focus {
+    outline: 2px solid #c67b5c;
+    outline-offset: 2px;
   }
 }
 
 .card-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/4;
   overflow: hidden;
   background: #f0ebe6;
   
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
     object-fit: cover;
   }
 }
 
 .card-content {
   padding: 0.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .card-title {
@@ -138,21 +176,31 @@ function formatLikes(count: number): string {
 }
 
 .like-btn {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  background: none;
+  background: rgba(255, 255, 255, 0.95);
   border: none;
   color: #7c6a5b;
   cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 4px;
+  padding: 0.375rem 0.5rem;
+  border-radius: 20px;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   
   &:hover {
     color: #c67b5c;
     background: #fff5f0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:focus {
+    outline: 2px solid #c67b5c;
+    outline-offset: 2px;
   }
   
   &:active {
@@ -166,7 +214,7 @@ function formatLikes(count: number): string {
 
 .like-count {
   font-size: 0.75rem;
-  font-weight: 500;
+  font-weight: 600;
   min-width: 20px;
   text-align: left;
 }
