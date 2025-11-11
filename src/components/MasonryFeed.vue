@@ -182,20 +182,17 @@ function formatLikes(count: number): string {
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: none;
   border: none;
-  color: #7c6a5b;
+  color: white;
   cursor: pointer;
-  padding: 0.375rem 0.5rem;
-  border-radius: 20px;
+  padding: 0;
   transition: all 0.2s ease;
   flex-shrink: 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   
   &:hover {
-    color: #c67b5c;
-    background: #fff5f0;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    color: #fff5f0;
+    transform: scale(1.1);
   }
   
   &:focus {
@@ -209,13 +206,18 @@ function formatLikes(count: number): string {
   
   svg {
     flex-shrink: 0;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 1px rgba(0, 0, 0, 0.9));
   }
 }
 
 .like-count {
   font-size: 0.6875rem;
-  font-weight: 600;
+  font-weight: 700;
   min-width: 20px;
   text-align: left;
+  text-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.7),
+    0 0 1px rgba(0, 0, 0, 0.9),
+    0 0 2px rgba(0, 0, 0, 0.5);
 }
 </style>

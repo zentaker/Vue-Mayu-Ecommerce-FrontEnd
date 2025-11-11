@@ -239,10 +239,13 @@ function closeImageModal() {
 }
 
 .image-gallery {
-  position: sticky;
-  top: 80px;
   height: fit-content;
-  max-height: calc(100vh - 120px);
+  
+  @media (min-width: 1024px) {
+    position: sticky;
+    top: 80px;
+    max-height: calc(100vh - 120px);
+  }
 }
 
 .main-image-wrapper {
