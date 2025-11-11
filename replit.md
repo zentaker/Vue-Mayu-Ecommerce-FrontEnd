@@ -160,12 +160,17 @@ npm run build
 ```
 
 ## Recent Changes
-- 2025-11-11: **Latest UX/UI Improvements**
+- 2025-11-11: **Critical UX/UI Fixes and Upload Feature**
+  - Fixed ProductDetailView image sizing with responsive max-height using clamp() and object-fit: contain
+  - Removed individual '+' buttons from feed cards (were incorrectly placed on each card)
+  - Created FloatingUpload component - single global '+' button (bottom-right, home only, auth required)
+  - Created UploadPostModal - full upload experience with image preview, title, description, tags
+  - Integrated upload flow in HomeView (pending Firebase Storage implementation)
+  - Settings gear icon in header confirmed visible globally for admins (via App.vue layout)
+- 2025-11-11: **Earlier UX/UI Improvements**
   - FloatingCart now only visible in catalog view (not on home, product detail, or other pages)
-  - Added '+' button on home feed cards for outfit image upload functionality
   - Renamed navigation "Cuenta" to "Perfil" (route remains /account)
   - Added settings gear icon in header (visible only to admins) for admin panel access
-  - Fixed ProductDetailView image size issue with max-height constraints
   - Fixed FeedCard typography - username and likes now fit on single line
   - Added "Mi Feed" section in Profile view for users to manage their personal outfit posts
 - 2025-11-11: Implemented shopping cart with floating button, animations, and drawer UI
