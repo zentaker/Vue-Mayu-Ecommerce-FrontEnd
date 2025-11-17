@@ -161,17 +161,26 @@ npm run build
 ```
 
 ## Recent Changes
-- 2025-11-17: **Modern Feed Redesign (TikTok/Instagram Style)**
-  - Added sticky navigation tabs below header: Seguir (with badge) / Descubrir / Cerca
-  - Transformed feed from masonry to vertical grid layout
-  - Changed to 1-column layout (mobile/tablet) expanding to 2-3 columns on wide desktops
-  - Cards redesigned with consistent 3:4 aspect ratio (vertical proportion)
-  - Increased typography sizes: title (1.0625-1.125rem), username (0.9375-1rem), avatar (32-36px)
-  - Reduced spacing for more compact feed (gap: 0.25rem)
-  - Like button redesigned in terracota color below image (not floating)
-  - Full-width cards on mobile/tablet for immersive experience
-  - Maintains Apricot branding in light mode
-  - Responsive design with breakpoints at 1400px and 1800px
+- 2025-11-17: **Modern Feed Redesign (TikTok/Instagram Style) - COMPLETED**
+  - ✅ Added sticky navigation tabs below header: Seguir (badge "8") / Descubrir / Cerca
+  - ✅ Implemented functional tab filtering:
+    - "Seguir": shows posts from followed users (María García, Carmen Ruiz, Isabel Torres)
+    - "Descubrir": shows all 8 posts (default)
+    - "Cerca": shows first 4 posts (nearby simulation)
+  - ✅ Transformed feed from masonry to vertical grid layout
+  - ✅ 1-column full-width layout (mobile/tablet < 1400px)
+  - ✅ 2-column layout (desktop ≥ 1400px)
+  - ✅ 3-column layout (extra wide ≥ 1800px)
+  - ✅ Cards with consistent 3:4 aspect ratio (vertical)
+  - ✅ Increased typography: title (1.0625-1.125rem), username (0.9375-1rem), avatar (32-36px)
+  - ✅ Reduced spacing: gap 0.25rem (mobile), 0.5rem (desktop), 0.75rem (extra wide)
+  - ✅ Like button in terracota color (#c67b5c) with 22px icon
+  - ✅ Full-width immersive cards on mobile/tablet
+  - ✅ Fixed header height: 64px + 1px border = 65px total
+  - ✅ Tabs sticky at top: 65px (no overlap with header)
+  - ✅ Main content padding-top: 65px (aligned)
+  - ✅ Light mode with Apricot branding maintained
+  - ✅ Fully responsive with precise breakpoints
 - 2025-11-17: **Instagram-Style Profile Layout**
   - Completely redesigned AccountView to match Instagram profile layout
   - Added circular avatar with responsive sizing (80px mobile, 150px desktop)

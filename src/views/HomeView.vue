@@ -51,7 +51,7 @@ const filteredOutfits = computed(() => {
       return followedOutfits.length > 0 ? followedOutfits : allOutfits
       
     case 'nearby':
-      // Mostrar outfits cercanos (mock: shuffle para simular variedad)
+      // Mostrar outfits cercanos (mock: primeros 4)
       const nearbyOutfits = allOutfits.slice(0, 4)
       return nearbyOutfits.length > 0 ? nearbyOutfits : allOutfits
       
