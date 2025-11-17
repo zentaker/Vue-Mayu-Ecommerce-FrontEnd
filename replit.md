@@ -43,6 +43,41 @@ The application is built with Vue 3 (Composition API), TypeScript, Vite, Pinia f
 
 ## Recent Changes (2025-11-17)
 
+### Role-Based Access Control (RBAC) System - COMPLETED ✅
+**Four-Tier User Roles:**
+- **User (basic)**: Access to Home, Catalog, Rewards, Account
+- **Staff**: User permissions + User/Permission Management + Content Moderation
+- **Admin**: User permissions + Product/Inventory Management + System Configuration
+- **Superadmin**: Full access to all features and routes (admin@google.com / 123456)
+
+**Technical Implementation:**
+- Created `UserRole` type: `'user' | 'staff' | 'admin' | 'superadmin'`
+- Auth store enhanced with role helpers: `isStaff`, `isAdmin`, `isSuperadmin`, `hasRole()`
+- Router guards with `allowedRoles` metadata for protected routes
+- Routes: `/staff` (Staff+), `/admin` (Admin+)
+- Superadmin has implicit access to all routes via `hasRole()` logic
+
+**Views:**
+- **StaffView**: User management, permissions overview, content moderation tabs
+- **AdminView**: Product management, order processing, outfit management tabs
+- Both views follow same design patterns with terracotta theme
+
+**Dynamic Menu:**
+- OffCanvasMenu shows Staff/Admin items conditionally based on user role
+- Special styling for privileged sections (gradient icons, border separator)
+- Reactive menu updates when user logs in/out
+
+**Auth Initialization:**
+- Bootstrap sequence: init auth → wait (with 3s timeout) → mount app
+- Works with Firebase configured (normal flow) and misconfigured (fallback)
+- Router guards properly wait for auth state before checking roles
+- Loading state managed to prevent navigation hangs
+
+**Security:**
+- Frontend role checks paired with router guards
+- Production deployment requires Firebase security rules (future work)
+- Console logging for access denied scenarios (debugging)
+
 ### Modern Feed with MAYU Branding - COMPLETED ✅
 **Off-Canvas Menu Redesign:**
 - Header changed from "Menú" to "MAYU" branding with modern typography

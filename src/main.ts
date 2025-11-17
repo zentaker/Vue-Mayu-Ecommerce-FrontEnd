@@ -16,7 +16,7 @@ app.use(router)
 const authStore = useAuthStore()
 
 // Use Promise.race to ensure app mounts even if Firebase is misconfigured
-let timeoutId: NodeJS.Timeout
+let timeoutId: ReturnType<typeof setTimeout>
 const authTimeout = new Promise<void>((resolve) => {
   timeoutId = setTimeout(() => {
     console.warn('Auth initialization timeout - Firebase may be misconfigured')
