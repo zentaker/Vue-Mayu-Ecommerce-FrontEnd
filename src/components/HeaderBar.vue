@@ -11,13 +11,19 @@
       <router-link to="/">Apricot Outfits</router-link>
     </div>
     <div class="header-actions">
-      <button class="icon-btn" aria-label="Search">
+      <router-link v-if="isAccountView" to="/settings" class="icon-btn" aria-label="Ajustes">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 1v6m0 6v6m6-11h-6m6 6h-6M7 7l4 4m2 2l4 4M7 17l4-4m2-2l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </router-link>
+      <button v-else class="icon-btn" aria-label="Search">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="9" cy="9" r="5" stroke="currentColor" stroke-width="2"/>
           <path d="M13 13L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
-      <router-link v-if="authStore.isAdmin" to="/admin" class="icon-btn" aria-label="Administración">
+      <router-link v-if="authStore.isAdmin && !isAccountView" to="/admin" class="icon-btn" aria-label="Administración">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
           <path d="M12 1v6m0 6v6m6-11h-6m6 6h-6M7 7l4 4m2 2l4 4M7 17l4-4m2-2l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -28,9 +34,14 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/authStore'
 
+const route = useRoute()
 const authStore = useAuthStore()
+
+const isAccountView = computed(() => route.path === '/account')
 
 const emit = defineEmits<{
   (e: 'toggle-menu'): void

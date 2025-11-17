@@ -6,6 +6,7 @@
       <router-view />
     </main>
     <FloatingCart />
+    <FloatingUpload />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import { ref, onMounted } from 'vue'
 import HeaderBar from '@/components/HeaderBar.vue'
 import OffCanvasMenu from '@/components/OffCanvasMenu.vue'
 import FloatingCart from '@/components/FloatingCart.vue'
+import FloatingUpload from '@/components/FloatingUpload.vue'
 import { useAuthStore } from '@/stores/authStore'
 
 const menuOpen = ref(false)

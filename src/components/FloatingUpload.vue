@@ -21,7 +21,7 @@ const route = useRoute()
 const router = useRouter()
 
 const isVisible = computed(() => {
-  return route.path === '/'
+  return route.path === '/' || route.path === '/account'
 })
 
 function navigateToCreate() {
