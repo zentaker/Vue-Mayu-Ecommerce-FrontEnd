@@ -7,16 +7,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, inject, ref, type Ref } from 'vue'
 import { useCatalogStore } from '@/stores/catalogStore'
 import MasonryFeed from '@/components/MasonryFeed.vue'
 import FloatingUpload from '@/components/FloatingUpload.vue'
 
-const props = defineProps<{
-  activeTab: string
-}>()
-
 const catalogStore = useCatalogStore()
+
+// Inject activeTab from App.vue (with default fallback)
+const activeTab = inject<Ref<string>>('activeTab', ref('discover'))
 
 // Lista de usuarios que "seguimos" (mock data)
 const followingUsers = ['María García', 'Carmen Ruiz', 'Isabel Torres']
@@ -25,7 +24,7 @@ const filteredOutfits = computed(() => {
   const allOutfits = catalogStore.outfits
   
   // Filtrar según el tab activo
-  switch (props.activeTab) {
+  switch (activeTab.value) {
     case 'following':
       // Mostrar solo outfits de usuarios que seguimos
       const followedOutfits = allOutfits.filter(outfit => 

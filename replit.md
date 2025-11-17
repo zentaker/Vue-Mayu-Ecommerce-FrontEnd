@@ -52,22 +52,36 @@ The application is built with Vue 3 (Composition API), TypeScript, Vite, Pinia f
 - Card navigates to /account on click
 - Modern styling: soft shadows, rounded corners (12px), smooth transitions
 
-**Feed Layout Optimization:**
-- **2-column grid** on mobile/tablet (<1400px) - shows **4 posts** on first screen (2×2)
-- **3-column grid** on desktop (1400-1799px)
-- **4-column grid** on extra wide screens (≥1800px)
-- Responsive aspect-ratios: 4:5 (mobile/tablet), 3:4 (desktop)
-- Compact spacing optimized for mobile browsing
+### Tabs in Header + Masonry Layout - COMPLETED ✅
+**Header Navigation Tabs:**
+- Tabs (Seguir/Descubrir/Cerca) integrated into HeaderBar component
+- Replaces "Apricot Outfits" title on Home page only
+- Other pages still show "Apricot Outfits" branding
+- Tab state managed in App.vue using provide/inject pattern
+- Badge "8" shown on "Seguir" tab
+
+**Masonry Layout (Pinterest/Xiaohongshu Style):**
+- Changed from CSS grid to CSS columns for natural masonry layout
+- Cards now have variable heights based on content
+- No fixed aspect-ratios - images display at natural proportions
+- 2 columns on mobile/tablet (<1400px)
+- 3 columns on desktop (1400-1799px)
+- 4 columns on extra wide screens (≥1800px)
+
+**Typography Refinements:**
+- Card titles: weight 600→500, size 0.9375rem→0.875rem (mobile)
+- Username: weight 500→400, size 0.875rem→0.75rem (mobile)
+- Like count: weight 600→500, size 0.875rem→0.75rem (mobile)
+- Overall lighter, more refined appearance matching Xiaohongshu design
 
 **Tab Filtering:**
-- Sticky tabs below header: "Seguir" (badge "8") / "Descubrir" / "Cerca"
-- All tabs use same MasonryFeed component with different data filters
 - "Seguir": Posts from followed users (María García, Carmen Ruiz, Isabel Torres)
 - "Descubrir": All 8 posts (default)
 - "Cerca": First 4 posts (nearby simulation)
+- Filtering reactive via provide/inject pattern
 
 **Technical Improvements:**
 - Cache-control headers in vite.config.ts for instant updates
 - Fixed header at 65px (64px + 1px border)
-- Tabs sticky at top: 65px
-- Main content padding-top: 65px
+- Provide/inject for state sharing between App → HeaderBar and App → HomeView
+- break-inside: avoid for proper column breaking

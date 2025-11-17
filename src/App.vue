@@ -8,7 +8,7 @@
     />
     <OffCanvasMenu :isOpen="menuOpen" @close="menuOpen = false" />
     <main class="main-content">
-      <router-view :activeTab="activeTab" @update-tab="handleTabChange" />
+      <router-view />
     </main>
     <FloatingCart />
     <FloatingUpload />
@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, provide } from 'vue'
 import HeaderBar from '@/components/HeaderBar.vue'
 import OffCanvasMenu from '@/components/OffCanvasMenu.vue'
 import FloatingCart from '@/components/FloatingCart.vue'
@@ -37,6 +37,9 @@ const tabs = ref([
 function handleTabChange(tabId: string) {
   activeTab.value = tabId
 }
+
+// Provide activeTab to all child components
+provide('activeTab', activeTab)
 
 onMounted(async () => {
   // Initialize auth (will gracefully fail if Firebase is not configured)
