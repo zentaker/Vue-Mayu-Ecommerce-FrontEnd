@@ -13,6 +13,11 @@ export default defineConfig({
     hmr: {
       port: 5000,
       clientPort: 5000
+    },
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
     }
   },
   resolve: {
