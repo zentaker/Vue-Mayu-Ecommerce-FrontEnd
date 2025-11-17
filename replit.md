@@ -138,6 +138,7 @@ src/
 
 ## Routes
 - `/` - Home (Masonry outfit feed)
+- `/create` - Create new post (full-screen Instagram-style flow)
 - `/post/:id` - Post detail view
 - `/catalog` - Product catalog with filters
 - `/product/:id` - Product detail view
@@ -160,6 +161,18 @@ npm run build
 ```
 
 ## Recent Changes
+- 2025-11-17: **Create Post Full-Screen Flow**
+  - Transformed upload modal into Instagram-style full-screen view at `/create`
+  - Implemented 3-step wizard flow:
+    1. Permission request screen (informative, user-friendly)
+    2. Image selection with drag & drop + click support
+    3. Large image preview with form (title, description, tags)
+  - Added comprehensive drag & drop support with visual feedback
+  - Created CreatePostView.vue with mobile-first responsive design
+  - Updated FloatingUpload button to navigate to /create route
+  - Removed UploadPostModal from HomeView (replaced by full-screen flow)
+  - Features: file type/size validation, dynamic text feedback, animated transitions
+  - Pending: Firebase Storage integration for actual image upload
 - 2025-11-11: **Product Reviews System**
   - Implemented complete review system in ProductDetailView
   - Added Review type with fields: userId, userName, userAvatar, rating (1-5), comment, images[], date
