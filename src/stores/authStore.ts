@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { authService, type UserProfile } from '@/firebase/auth.service'
+import type { UserRole } from '@/types'
 
 export const useAuthStore = defineStore('auth', () => {
   const currentUser = ref<UserProfile | null>(null)
@@ -8,7 +9,26 @@ export const useAuthStore = defineStore('auth', () => {
   const error = ref<string | null>(null)
 
   const isAuthenticated = computed(() => currentUser.value !== null)
-  const isAdmin = computed(() => currentUser.value?.role === 'admin')
+  
+  // Role computed properties
+  const isSuperadmin = computed(() => currentUser.value?.role === 'superadmin')
+  const isAdmin = computed(() => 
+    currentUser.value?.role === 'admin' || isSuperadmin.value
+  )
+  const isStaff = computed(() => 
+    currentUser.value?.role === 'staff' || isSuperadmin.value
+  )
+  
+  // Helper function to check if user has any of the required roles
+  function hasRole(requiredRoles: UserRole | UserRole[]): boolean {
+    if (!currentUser.value) return false
+    
+    // Superadmin has access to everything
+    if (currentUser.value.role === 'superadmin') return true
+    
+    const roles = Array.isArray(requiredRoles) ? requiredRoles : [requiredRoles]
+    return roles.includes(currentUser.value.role)
+  }
 
   async function signIn(email: string, password: string): Promise<boolean> {
     loading.value = true
@@ -67,6 +87,9 @@ export const useAuthStore = defineStore('auth', () => {
     error,
     isAuthenticated,
     isAdmin,
+    isStaff,
+    isSuperadmin,
+    hasRole,
     signIn,
     signOut,
     initializeAuth,

@@ -7,11 +7,12 @@ import {
 import type { User as FirebaseUser } from 'firebase/auth'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { auth, db } from './config'
+import type { UserRole } from '@/types'
 
 export interface UserProfile {
   uid: string
   email: string
-  role: 'user' | 'admin'
+  role: UserRole
   displayName?: string
   createdAt: Date
 }
@@ -37,7 +38,7 @@ export class AuthService {
     await signOut(auth)
   }
 
-  async createUser(email: string, password: string, role: 'user' | 'admin' = 'user'): Promise<UserProfile> {
+  async createUser(email: string, password: string, role: UserRole = 'user'): Promise<UserProfile> {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     const userProfile: UserProfile = {
       uid: userCredential.user.uid,

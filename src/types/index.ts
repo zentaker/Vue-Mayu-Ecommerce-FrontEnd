@@ -1,3 +1,5 @@
+export type UserRole = 'user' | 'staff' | 'admin' | 'superadmin'
+
 export interface Review {
   id: string
   userId: string
