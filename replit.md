@@ -39,3 +39,35 @@ The application is built with Vue 3 (Composition API), TypeScript, Vite, Pinia f
 - **Firebase:**
     - Integrated for authentication (`auth.service.ts`), database (Firestore for products, outfits, orders - `firestore.service.ts`), and storage (for images - `storage.service.ts`).
     - Requires Firebase credentials configured in Replit Secrets.
+    - Note: Currently showing configuration error - app works with mock data until credentials are properly configured.
+
+## Recent Changes (2025-11-17)
+
+### Modern Feed with MAYU Branding - COMPLETED ✅
+**Off-Canvas Menu Redesign:**
+- Header changed from "Menú" to "MAYU" branding with modern typography
+- Implemented custom SVG line icons (24x24px) for navigation: Inicio, Catálogo, Rewards
+- Reorganized menu structure: main navigation above, user profile card below
+- User card shows: circular avatar (40px), "María García", "VIP Gold" role, settings icon
+- Card navigates to /account on click
+- Modern styling: soft shadows, rounded corners (12px), smooth transitions
+
+**Feed Layout Optimization:**
+- **2-column grid** on mobile/tablet (<1400px) - shows **4 posts** on first screen (2×2)
+- **3-column grid** on desktop (1400-1799px)
+- **4-column grid** on extra wide screens (≥1800px)
+- Responsive aspect-ratios: 4:5 (mobile/tablet), 3:4 (desktop)
+- Compact spacing optimized for mobile browsing
+
+**Tab Filtering:**
+- Sticky tabs below header: "Seguir" (badge "8") / "Descubrir" / "Cerca"
+- All tabs use same MasonryFeed component with different data filters
+- "Seguir": Posts from followed users (María García, Carmen Ruiz, Isabel Torres)
+- "Descubrir": All 8 posts (default)
+- "Cerca": First 4 posts (nearby simulation)
+
+**Technical Improvements:**
+- Cache-control headers in vite.config.ts for instant updates
+- Fixed header at 65px (64px + 1px border)
+- Tabs sticky at top: 65px
+- Main content padding-top: 65px

@@ -56,18 +56,24 @@ function formatLikes(count: number): string {
 <style scoped lang="scss">
 .modern-feed {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.25rem;
+  padding: 0.25rem;
   background: #f0ebe6;
   
+  @media (min-width: 768px) {
+    gap: 0.375rem;
+    padding: 0.375rem;
+  }
+  
   @media (min-width: 1400px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
     padding: 0.5rem;
   }
   
   @media (min-width: 1800px) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
     padding: 0.75rem;
   }
@@ -103,20 +109,17 @@ function formatLikes(count: number): string {
   background: #f0ebe6;
   overflow: hidden;
   
-  /* MOBILE: Ratio horizontal para ver 2-3 posts */
-  aspect-ratio: 3 / 2;
-  max-height: min(60vh, 320px);
+  /* MOBILE: 2 columnas - ratio casi cuadrado */
+  aspect-ratio: 4 / 5;
   
-  /* TABLET: Casi cuadrado */
+  /* TABLET: Mantiene mismo ratio */
   @media (min-width: 768px) {
-    aspect-ratio: 4 / 3;
-    max-height: min(55vh, 380px);
+    aspect-ratio: 4 / 5;
   }
   
   /* DESKTOP: Más vertical tipo Instagram */
   @media (min-width: 1400px) {
-    aspect-ratio: 5 / 7;
-    max-height: min(65vh, 420px);
+    aspect-ratio: 3 / 4;
   }
 }
 
