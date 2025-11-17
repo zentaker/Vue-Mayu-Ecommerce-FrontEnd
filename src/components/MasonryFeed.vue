@@ -102,7 +102,15 @@ function formatLikes(count: number): string {
   width: 100%;
   background: #f0ebe6;
   overflow: hidden;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 5 / 6;
+  
+  @media (min-width: 768px) {
+    aspect-ratio: 4 / 5;
+  }
+  
+  @media (min-width: 1400px) {
+    aspect-ratio: 3 / 4;
+  }
 }
 
 .card-image {
@@ -113,27 +121,31 @@ function formatLikes(count: number): string {
 }
 
 .card-info {
-  padding: 1rem;
+  padding: 0.875rem;
   background: white;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.625rem;
+  
+  @media (min-width: 768px) {
+    padding: 1rem;
+  }
 }
 
 .card-title {
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: #4a4238;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.3;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   
   @media (min-width: 768px) {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 }
 
@@ -153,21 +165,21 @@ function formatLikes(count: number): string {
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
   border: 2px solid #f0ebe6;
   
   @media (min-width: 768px) {
-    width: 36px;
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
 }
 
 .user-name {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #4a4238;
   overflow: hidden;
@@ -175,7 +187,7 @@ function formatLikes(count: number): string {
   white-space: nowrap;
   
   @media (min-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 }
 
@@ -213,12 +225,12 @@ function formatLikes(count: number): string {
 }
 
 .like-count {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: #4a4238;
   
   @media (min-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 }
 </style>

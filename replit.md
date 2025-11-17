@@ -190,10 +190,11 @@ npm run build
   - ✅ 1-column full-width layout (mobile/tablet < 1400px)
   - ✅ 2-column layout (desktop ≥ 1400px)
   - ✅ 3-column layout (extra wide ≥ 1800px)
-  - ✅ Cards with consistent 3:4 aspect ratio (vertical)
-  - ✅ Increased typography: title (1.0625-1.125rem), username (0.9375-1rem), avatar (32-36px)
+  - ✅ Cards with consistent 3:4 aspect ratio (vertical) + max-height constraint for compact viewing
+  - ✅ Multiple posts visible simultaneously: 1.5-2 posts per screen (mobile)
+  - ✅ Compact typography: title (0.9375-1rem), username (0.875-0.9375rem), avatar (28-32px)
   - ✅ Reduced spacing: gap 0.25rem (mobile), 0.5rem (desktop), 0.75rem (extra wide)
-  - ✅ Like button in terracota color (#c67b5c) with 22px icon
+  - ✅ Like button in terracota color (#c67b5c) with heart icon
   - ✅ Full-width immersive cards on mobile/tablet
   - ✅ Fixed header height: 64px + 1px border = 65px total
   - ✅ Tabs sticky at top: 65px (no overlap with header)
