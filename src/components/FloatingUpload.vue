@@ -3,7 +3,7 @@
     <button 
       v-if="isVisible"
       class="floating-upload-btn"
-      @click="$emit('open-upload')"
+      @click="navigateToCreate"
       aria-label="Subir nuevo outfit"
     >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,19 +15,18 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useAuthStore } from '@/stores/authStore'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
-const authStore = useAuthStore()
+const router = useRouter()
 
 const isVisible = computed(() => {
   return route.path === '/'
 })
 
-defineEmits<{
-  'open-upload': []
-}>()
+function navigateToCreate() {
+  router.push('/create')
+}
 </script>
 
 <style scoped lang="scss">

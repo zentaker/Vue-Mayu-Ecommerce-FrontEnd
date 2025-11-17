@@ -7,6 +7,7 @@ import AccountView from '@/views/AccountView.vue'
 import PostDetailView from '@/views/PostDetailView.vue'
 import ProductDetailView from '@/views/ProductDetailView.vue'
 import LoginView from '@/views/LoginView.vue'
+import CreatePostView from '@/views/CreatePostView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,11 @@ const router = createRouter({
       path: '/post/:id',
       name: 'post-detail',
       component: PostDetailView
+    },
+    {
+      path: '/create',
+      name: 'create-post',
+      component: CreatePostView
     },
     {
       path: '/catalog',
