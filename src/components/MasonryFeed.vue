@@ -102,12 +102,15 @@ function formatLikes(count: number): string {
   width: 100%;
   background: #f0ebe6;
   overflow: hidden;
+  /* MOBILE: Cards cuadradas para ver 2+ posts */
   aspect-ratio: 1 / 1;
   
+  /* TABLET: Ligeramente más verticales */
   @media (min-width: 768px) {
     aspect-ratio: 4 / 5;
   }
   
+  /* DESKTOP: Más verticales tipo Instagram */
   @media (min-width: 1400px) {
     aspect-ratio: 3 / 4;
   }
