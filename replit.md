@@ -161,6 +161,18 @@ npm run build
 ```
 
 ## Recent Changes
+- 2025-11-17: **Instagram-Style Profile Layout**
+  - Completely redesigned AccountView to match Instagram profile layout
+  - Added circular avatar with responsive sizing (80px mobile, 150px desktop)
+  - Implemented horizontal stats bar: posts / followers / following
+  - Added multi-line bio section with emoji support
+  - Created 3-column photo grid (Instagram-style) with hover overlays
+  - Modified HeaderBar to show settings gear (⚙️) icon only on /account route
+  - FloatingUpload button now appears on both home (/) and profile (/account)
+  - Added FloatingUpload component to App.vue for global rendering
+  - Click on grid photos navigates to individual post detail view
+  - Empty state when user has no posts yet
+  - Fully responsive design with mobile-first approach
 - 2025-11-17: **Create Post Full-Screen Flow**
   - Transformed upload modal into Instagram-style full-screen view at `/create`
   - Implemented 3-step wizard flow:
