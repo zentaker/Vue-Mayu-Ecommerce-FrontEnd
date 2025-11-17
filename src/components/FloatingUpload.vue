@@ -22,7 +22,7 @@ const route = useRoute()
 const authStore = useAuthStore()
 
 const isVisible = computed(() => {
-  return route.path === '/' && authStore.isAuthenticated
+  return route.path === '/'
 })
 
 defineEmits<{
