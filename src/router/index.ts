@@ -91,9 +91,18 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
   
-  // Wait for auth initialization if needed
-  if (!authStore.isAuthenticated && authStore.loading) {
-    await new Promise(resolve => setTimeout(resolve, 100))
+  // Wait for auth initialization to complete
+  if (authStore.loading) {
+    const maxWait = 5000
+    const startTime = Date.now()
+    
+    while (authStore.loading && (Date.now() - startTime) < maxWait) {
+      await new Promise(resolve => setTimeout(resolve, 50))
+    }
+    
+    if (authStore.loading) {
+      console.warn('Auth initialization timeout - proceeding with navigation')
+    }
   }
   
   // Check if route requires authentication

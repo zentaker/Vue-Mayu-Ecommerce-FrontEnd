@@ -60,6 +60,7 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function initializeAuth(): Promise<void> {
+    loading.value = true
     return new Promise((resolve) => {
       authService.onAuthStateChanged(async (user) => {
         if (user) {
@@ -72,6 +73,7 @@ export const useAuthStore = defineStore('auth', () => {
         } else {
           currentUser.value = null
         }
+        loading.value = false
         resolve()
       })
     })
@@ -79,6 +81,10 @@ export const useAuthStore = defineStore('auth', () => {
 
   function clearError() {
     error.value = null
+  }
+  
+  function clearLoading() {
+    loading.value = false
   }
 
   return {
@@ -93,6 +99,7 @@ export const useAuthStore = defineStore('auth', () => {
     signIn,
     signOut,
     initializeAuth,
-    clearError
+    clearError,
+    clearLoading
   }
 })
