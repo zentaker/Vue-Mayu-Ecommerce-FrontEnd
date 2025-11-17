@@ -58,7 +58,7 @@ function toggleMenu() {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 64px;
   background: #ffffff;
   border-bottom: 1px solid #f0ebe6;
   display: flex;

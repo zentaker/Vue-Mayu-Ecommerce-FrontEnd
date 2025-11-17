@@ -161,6 +161,17 @@ npm run build
 ```
 
 ## Recent Changes
+- 2025-11-17: **Modern Feed Redesign (TikTok/Instagram Style)**
+  - Added sticky navigation tabs below header: Seguir (with badge) / Descubrir / Cerca
+  - Transformed feed from masonry to vertical grid layout
+  - Changed to 1-column layout (mobile/tablet) expanding to 2-3 columns on wide desktops
+  - Cards redesigned with consistent 3:4 aspect ratio (vertical proportion)
+  - Increased typography sizes: title (1.0625-1.125rem), username (0.9375-1rem), avatar (32-36px)
+  - Reduced spacing for more compact feed (gap: 0.25rem)
+  - Like button redesigned in terracota color below image (not floating)
+  - Full-width cards on mobile/tablet for immersive experience
+  - Maintains Apricot branding in light mode
+  - Responsive design with breakpoints at 1400px and 1800px
 - 2025-11-17: **Instagram-Style Profile Layout**
   - Completely redesigned AccountView to match Instagram profile layout
   - Added circular avatar with responsive sizing (80px mobile, 150px desktop)
