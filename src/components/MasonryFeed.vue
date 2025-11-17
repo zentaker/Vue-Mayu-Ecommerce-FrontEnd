@@ -102,7 +102,7 @@ function formatLikes(count: number): string {
   width: 100%;
   background: #f0ebe6;
   overflow: hidden;
-  aspect-ratio: 5 / 6;
+  aspect-ratio: 1 / 1;
   
   @media (min-width: 768px) {
     aspect-ratio: 4 / 5;
