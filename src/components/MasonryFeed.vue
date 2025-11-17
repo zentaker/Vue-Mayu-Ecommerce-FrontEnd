@@ -55,26 +55,25 @@ function formatLikes(count: number): string {
 
 <style scoped lang="scss">
 .modern-feed {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.25rem;
+  column-count: 2;
+  column-gap: 0.25rem;
   padding: 0.25rem;
   background: #f0ebe6;
   
   @media (min-width: 768px) {
-    gap: 0.375rem;
+    column-gap: 0.375rem;
     padding: 0.375rem;
   }
   
   @media (min-width: 1400px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+    column-count: 3;
+    column-gap: 0.5rem;
     padding: 0.5rem;
   }
   
   @media (min-width: 1800px) {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.75rem;
+    column-count: 4;
+    column-gap: 0.75rem;
     padding: 0.75rem;
   }
 }
@@ -82,9 +81,19 @@ function formatLikes(count: number): string {
 .feed-card {
   background: white;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 0.25rem;
   transition: transform 0.2s ease;
+  break-inside: avoid;
+  
+  @media (min-width: 768px) {
+    margin-bottom: 0.375rem;
+  }
+  
+  @media (min-width: 1400px) {
+    margin-bottom: 0.5rem;
+  }
   
   &:active {
     transform: scale(0.98);
@@ -109,18 +118,7 @@ function formatLikes(count: number): string {
   background: #f0ebe6;
   overflow: hidden;
   
-  /* MOBILE: 2 columnas - ratio casi cuadrado */
-  aspect-ratio: 4 / 5;
-  
-  /* TABLET: Mantiene mismo ratio */
-  @media (min-width: 768px) {
-    aspect-ratio: 4 / 5;
-  }
-  
-  /* DESKTOP: Más vertical tipo Instagram */
-  @media (min-width: 1400px) {
-    aspect-ratio: 3 / 4;
-  }
+  /* Sin aspect-ratio fijo - permite altura variable según imagen */
 }
 
 .card-image {
@@ -144,8 +142,8 @@ function formatLikes(count: number): string {
 }
 
 .card-title {
-  font-size: 0.9375rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: #4a4238;
   margin: 0;
   line-height: 1.3;
@@ -155,7 +153,7 @@ function formatLikes(count: number): string {
   overflow: hidden;
   
   @media (min-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
 }
 
@@ -189,15 +187,15 @@ function formatLikes(count: number): string {
 }
 
 .user-name {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 400;
   color: #4a4238;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   
   @media (min-width: 768px) {
-    font-size: 0.9375rem;
+    font-size: 0.8125rem;
   }
 }
 
@@ -235,12 +233,12 @@ function formatLikes(count: number): string {
 }
 
 .like-count {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 0.75rem;
+  font-weight: 500;
   color: #4a4238;
   
   @media (min-width: 768px) {
-    font-size: 0.9375rem;
+    font-size: 0.8125rem;
   }
 }
 </style>
