@@ -161,6 +161,25 @@ npm run build
 ```
 
 ## Recent Changes
+- 2025-11-17: **Modern Sidebar Menu (MAYU Branding) - COMPLETED**
+  - ✅ Changed header from "Menú" to "MAYU" with modern typography (1.5rem, bold, letter-spacing)
+  - ✅ Replaced all emoji icons with custom SVG linear icons (24x24px, stroke-width 2)
+  - ✅ Reorganized menu structure:
+    - Top section: Inicio, Catálogo, Rewards (main navigation)
+    - Bottom section: User profile card with avatar, name, role, and settings icon
+  - ✅ Created professional user card at bottom:
+    - Circular avatar (48px) with white border and shadow
+    - User name: "María García"
+    - User role: "VIP Gold" in terracota color
+    - Settings gear icon on the right
+    - Entire card clickable to navigate to /account
+  - ✅ Modern aesthetic:
+    - Menu panel: rounded corners on right side (0 16px 16px 0)
+    - Soft shadow: 4px 0 24px rgba(0, 0, 0, 0.12)
+    - Menu items: 12px border-radius with smooth transitions
+    - Icon wrappers: 40x40px with 10px border-radius
+    - Active state: terracota background on icon, terracota text
+    - Hover effects with clean spacing
 - 2025-11-17: **Modern Feed Redesign (TikTok/Instagram Style) - COMPLETED**
   - ✅ Added sticky navigation tabs below header: Seguir (badge "8") / Descubrir / Cerca
   - ✅ Implemented functional tab filtering:
