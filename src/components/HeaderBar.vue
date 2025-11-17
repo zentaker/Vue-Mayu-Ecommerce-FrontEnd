@@ -7,9 +7,24 @@
         <span></span>
       </span>
     </button>
-    <div class="logo">
+    
+    <!-- Tabs en Home, Logo en otras páginas -->
+    <div v-if="isHomeView" class="header-tabs">
+      <button 
+        v-for="tab in tabs" 
+        :key="tab.id"
+        class="tab-btn"
+        :class="{ active: activeTab === tab.id }"
+        @click="emit('tab-change', tab.id)"
+      >
+        {{ tab.label }}
+        <span v-if="tab.id === 'following' && tab.badge" class="tab-badge">{{ tab.badge }}</span>
+      </button>
+    </div>
+    <div v-else class="logo">
       <router-link to="/">Apricot Outfits</router-link>
     </div>
+    
     <div class="header-actions">
       <router-link v-if="isAccountView" to="/settings" class="icon-btn" aria-label="Ajustes">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,10 +56,17 @@ import { useAuthStore } from '@/stores/authStore'
 const route = useRoute()
 const authStore = useAuthStore()
 
+const isHomeView = computed(() => route.path === '/')
 const isAccountView = computed(() => route.path === '/account')
+
+const props = defineProps<{
+  activeTab?: string
+  tabs?: Array<{ id: string; label: string; badge?: number | null }>
+}>()
 
 const emit = defineEmits<{
   (e: 'toggle-menu'): void
+  (e: 'tab-change', tabId: string): void
 }>()
 
 function toggleMenu() {
@@ -104,6 +126,67 @@ function toggleMenu() {
     color: inherit;
     text-decoration: none;
   }
+}
+
+.header-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex: 1;
+  
+  @media (min-width: 768px) {
+    gap: 2rem;
+  }
+}
+
+.tab-btn {
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #7c6a5b;
+  cursor: pointer;
+  padding: 0.5rem 0.25rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  
+  @media (min-width: 768px) {
+    font-size: 1rem;
+  }
+  
+  &:hover {
+    color: #4a4238;
+  }
+  
+  &.active {
+    color: #4a4238;
+    font-weight: 500;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1.125rem;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #4a4238;
+    }
+  }
+}
+
+.tab-badge {
+  background: #c67b5c;
+  color: white;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 0.125rem 0.375rem;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
 }
 
 .header-actions {

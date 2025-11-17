@@ -1,9 +1,14 @@
 <template>
   <div id="app">
-    <HeaderBar @toggle-menu="menuOpen = !menuOpen" />
+    <HeaderBar 
+      @toggle-menu="menuOpen = !menuOpen" 
+      :activeTab="activeTab"
+      :tabs="tabs"
+      @tab-change="handleTabChange"
+    />
     <OffCanvasMenu :isOpen="menuOpen" @close="menuOpen = false" />
     <main class="main-content">
-      <router-view />
+      <router-view :activeTab="activeTab" @update-tab="handleTabChange" />
     </main>
     <FloatingCart />
     <FloatingUpload />
@@ -20,6 +25,18 @@ import { useAuthStore } from '@/stores/authStore'
 
 const menuOpen = ref(false)
 const authStore = useAuthStore()
+
+// Tabs state for Home page
+const activeTab = ref('discover')
+const tabs = ref([
+  { id: 'following', label: 'Seguir', badge: 8 },
+  { id: 'discover', label: 'Descubrir', badge: null },
+  { id: 'nearby', label: 'Cerca', badge: null }
+])
+
+function handleTabChange(tabId: string) {
+  activeTab.value = tabId
+}
 
 onMounted(async () => {
   // Initialize auth (will gracefully fail if Firebase is not configured)
