@@ -41,6 +41,44 @@ The application is built with Vue 3 (Composition API), TypeScript, Vite, Pinia f
     - Requires Firebase credentials configured in Replit Secrets.
     - Note: Currently showing configuration error - app works with mock data until credentials are properly configured.
 
+## Recent Changes (2025-11-18)
+
+### Authentication & Logout System - COMPLETED ✅
+**Protected Routes:**
+- ALL main routes now require authentication: `/`, `/catalog`, `/rewards`, `/account`, `/create`, `/post/:id`, `/product/:id`
+- Only `/login` is publicly accessible
+- Unauthenticated users are automatically redirected to `/login`
+- Authenticated users are redirected away from `/login` to `/`
+
+**Settings View:**
+- New `/settings` route with SettingsView component
+- Displays user information: avatar, name, email, role badge
+- "Mi Perfil" link navigates to account page
+- "Cerrar Sesión" button executes logout flow
+
+**Logout Implementation:**
+- Robust signOut() function with try/finally block
+- User state always cleared, even if Firebase signOut fails
+- Automatic redirection to `/login` after logout
+- Error handling with console logging
+
+**Menu Improvements:**
+- Settings icon in OffCanvasMenu updated to simpler, modern design (circle with rays)
+- Settings button now navigates to `/settings` instead of `/account`
+- Clear separation between profile view and settings
+
+**Security Enhancements:**
+- Router guard properly handles auth initialization timeout
+- Explicit `clearLoading()` call on timeout prevents security bypass
+- Users cannot access protected routes without authentication
+- Authenticated users cannot revisit login page
+
+**Technical Details:**
+- Created `src/views/SettingsView.vue` with terracotta theme
+- Updated router guards in `src/router/index.ts`
+- Enhanced `authStore.signOut()` for robustness
+- Added `goToSettings()` function in OffCanvasMenu
+
 ## Recent Changes (2025-11-17)
 
 ### Role-Based Access Control (RBAC) System - COMPLETED ✅
