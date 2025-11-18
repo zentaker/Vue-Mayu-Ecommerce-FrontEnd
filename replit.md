@@ -43,6 +43,27 @@ The application is built with Vue 3 (Composition API), TypeScript, Vite, Pinia f
 
 ## Recent Changes (2025-11-18)
 
+### Session Persistence Fix - COMPLETED ✅
+**Problem:** User session was lost when closing/reopening the preview or reloading the page
+**Solution:** Configured Firebase Auth to use `browserLocalPersistence`
+- Session now persists across page reloads and browser tabs
+- Users remain logged in until they explicitly log out
+- Implemented in `src/firebase/config.ts` using `setPersistence()`
+
+### Firestore Offline Fallback - COMPLETED ✅
+**Problem:** Firestore "client offline" errors prevented login
+**Solution:** Added fallback logic when Firestore is unavailable
+- Auth service now gracefully handles Firestore offline state
+- Superadmin profile (`admin@google.com`) recognized locally
+- App works fully without Firestore database connection
+- Profile data uses local fallback until Firestore is available
+
+### Settings Icon Update - COMPLETED ✅
+**Change:** Updated settings icon from "circle with rays" to standard gear icon
+- More recognizable and conventional design
+- Located in OffCanvasMenu next to user profile card
+- Matches industry-standard settings iconography
+
 ### Authentication & Logout System - COMPLETED ✅
 **Protected Routes:**
 - ALL main routes now require authentication: `/`, `/catalog`, `/rewards`, `/account`, `/create`, `/post/:id`, `/product/:id`

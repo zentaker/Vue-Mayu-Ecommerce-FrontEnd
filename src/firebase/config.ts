@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth, setPersistence, browserLocalPersistence } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 import { getStorage } from 'firebase/storage'
 
@@ -29,7 +29,16 @@ if (isFirebaseConfigured) {
     auth = getAuth(app)
     db = getFirestore(app)
     storage = getStorage(app)
-    console.log('Firebase initialized successfully')
+    
+    // Configure auth persistence to keep user logged in across page reloads
+    setPersistence(auth, browserLocalPersistence)
+      .then(() => {
+        console.log('Firebase initialized successfully with persistence enabled')
+      })
+      .catch((error) => {
+        console.warn('Could not set auth persistence:', error)
+        console.log('Firebase initialized successfully (without persistence)')
+      })
   } catch (error) {
     console.warn('Firebase initialization failed. App will work with local data only.')
   }
