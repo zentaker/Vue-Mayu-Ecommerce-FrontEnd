@@ -51,10 +51,12 @@ export const useAuthStore = defineStore('auth', () => {
     
     try {
       await authService.signOut()
-      currentUser.value = null
     } catch (err: any) {
       error.value = err.message || 'Error al cerrar sesión'
+      console.error('SignOut error:', err)
     } finally {
+      // Always clear user state, even if signOut fails
+      currentUser.value = null
       loading.value = false
     }
   }

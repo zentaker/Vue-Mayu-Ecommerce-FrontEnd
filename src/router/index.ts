@@ -21,44 +21,57 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/login',
+      name: 'login',
+      component: LoginView
+    },
+    {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/post/:id',
       name: 'post-detail',
-      component: PostDetailView
+      component: PostDetailView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/create',
       name: 'create-post',
-      component: CreatePostView
+      component: CreatePostView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/catalog',
       name: 'catalog',
-      component: CatalogView
+      component: CatalogView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/product/:id',
       name: 'product-detail',
-      component: ProductDetailView
+      component: ProductDetailView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/rewards',
       name: 'rewards',
-      component: RewardsView
+      component: RewardsView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/account',
       name: 'account',
-      component: AccountView
+      component: AccountView,
+      meta: { requiresAuth: true }
     },
     {
-      path: '/login',
-      name: 'login',
-      component: LoginView
+      path: '/settings',
+      name: 'settings',
+      component: () => import('@/views/SettingsView.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/staff',
@@ -101,8 +114,15 @@ router.beforeEach(async (to, from, next) => {
     }
     
     if (authStore.loading) {
-      console.warn('Auth initialization timeout - proceeding with navigation')
+      console.warn('Auth initialization timeout - forcing logout state')
+      authStore.clearLoading()
     }
+  }
+  
+  // Redirect authenticated users away from login page
+  if (to.path === '/login' && authStore.isAuthenticated) {
+    next('/')
+    return
   }
   
   // Check if route requires authentication
