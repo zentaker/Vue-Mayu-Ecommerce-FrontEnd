@@ -47,18 +47,39 @@ export class AuthService {
       createdAt: new Date()
     }
     
-    await setDoc(doc(db, 'users', userCredential.user.uid), userProfile)
+    try {
+      await setDoc(doc(db, 'users', userCredential.user.uid), userProfile)
+    } catch (error: any) {
+      console.warn('Could not save user profile to Firestore (offline):', error.code)
+    }
+    
     return userProfile
   }
 
   async getUserProfile(uid: string): Promise<UserProfile> {
-    const userDoc = await getDoc(doc(db, 'users', uid))
-    if (userDoc.exists()) {
-      return userDoc.data() as UserProfile
+    try {
+      const userDoc = await getDoc(doc(db, 'users', uid))
+      if (userDoc.exists()) {
+        return userDoc.data() as UserProfile
+      }
+    } catch (error: any) {
+      console.warn('Firestore unavailable, using fallback profile:', error.code)
     }
     
-    // Fallback for users without profile
+    // Fallback for users without profile or when Firestore is offline
     const user = auth.currentUser
+    
+    // Special case for superadmin
+    if (user?.email === 'admin@google.com') {
+      return {
+        uid: uid,
+        email: user.email,
+        role: 'superadmin',
+        displayName: 'Super Admin',
+        createdAt: new Date()
+      }
+    }
+    
     return {
       uid: uid,
       email: user?.email || '',
