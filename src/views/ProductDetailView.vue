@@ -1,10 +1,7 @@
 <template>
   <div class="product-detail">
     <button class="back-btn" @click="router.back()" aria-label="Volver">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="19" y1="12" x2="5" y2="12"/>
-        <polyline points="12 19 5 12 12 5"/>
-      </svg>
+      <MaterialIcon name="arrow_back" :size="24" />
     </button>
 
     <div v-if="product" class="product-content">
@@ -64,9 +61,7 @@
         <!-- Availability -->
         <div class="availability">
           <span v-if="product.available" class="in-stock">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
+            <MaterialIcon name="check" :size="18" />
             En stock
           </span>
           <span v-else class="out-of-stock">Agotado</span>
@@ -104,9 +99,15 @@
           <div class="rating-number">{{ product.rating?.toFixed(1) }}</div>
           <div class="rating-details">
             <div class="stars-display">
-              <svg v-for="star in 5" :key="star" class="star" :class="{ filled: star <= Math.round(product.rating || 0) }" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
+              <MaterialIcon
+                v-for="star in 5"
+                :key="star"
+                class="star"
+                :class="{ filled: star <= Math.round(product.rating || 0) }"
+                name="star"
+                :size="20"
+                :fill="star <= Math.round(product.rating || 0)"
+              />
             </div>
             <p class="review-count">{{ product.reviewCount }} valoraciones</p>
           </div>
@@ -121,9 +122,15 @@
               <h4 class="reviewer-name">{{ review.userName }}</h4>
               <div class="review-meta">
                 <div class="review-stars">
-                  <svg v-for="star in 5" :key="star" class="star" :class="{ filled: star <= review.rating }" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
+                  <MaterialIcon
+                    v-for="star in 5"
+                    :key="star"
+                    class="star"
+                    :class="{ filled: star <= review.rating }"
+                    name="star"
+                    :size="16"
+                    :fill="star <= review.rating"
+                  />
                 </div>
                 <span class="review-date">{{ formatDate(review.date) }}</span>
               </div>
@@ -141,10 +148,7 @@
     <Transition name="modal">
       <div v-if="imageModalOpen" class="image-modal" @click="closeImageModal">
         <button class="close-modal-btn" @click="closeImageModal" aria-label="Cerrar">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
+          <MaterialIcon name="close" :size="32" />
         </button>
         <img :src="reviewModalImage || currentImage" :alt="product?.name" class="modal-image" @click.stop />
       </div>
@@ -153,9 +157,7 @@
     <!-- Success Toast -->
     <Transition name="toast">
       <div v-if="showToast" class="toast">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
+        <MaterialIcon name="check_circle" :size="22" />
         Agregado al carrito
       </div>
     </Transition>
@@ -461,7 +463,7 @@ function closeImageModal() {
   font-size: 0.9375rem;
   font-weight: 600;
 
-  svg {
+  .material-icon {
     flex-shrink: 0;
   }
 }

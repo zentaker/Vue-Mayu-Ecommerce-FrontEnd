@@ -5,10 +5,7 @@
         <div class="modal-header">
           <h2>Crear Nuevo Post</h2>
           <button class="close-btn" @click="handleClose" aria-label="Cerrar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
+            <MaterialIcon name="close" :size="24" />
           </button>
         </div>
 
@@ -26,21 +23,14 @@
                 required
               />
               <div v-if="!imagePreview" class="upload-placeholder">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                  <circle cx="8.5" cy="8.5" r="1.5"/>
-                  <polyline points="21 15 16 10 5 21"/>
-                </svg>
+                <MaterialIcon name="add_photo_alternate" :size="52" />
                 <p>Click para seleccionar imagen</p>
                 <span>PNG, JPG hasta 5MB</span>
               </div>
               <div v-else class="image-preview">
                 <img :src="imagePreview" alt="Vista previa" />
                 <button type="button" class="remove-image-btn" @click.stop="removeImage">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
-                  </svg>
+                  <MaterialIcon name="close" :size="20" />
                 </button>
               </div>
             </div>
@@ -77,10 +67,7 @@
               <span v-for="tag in formData.tags" :key="tag" class="tag">
                 {{ tag }}
                 <button type="button" @click="removeTag(tag)" aria-label="Quitar tag">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
-                  </svg>
+                  <MaterialIcon name="close" :size="14" />
                 </button>
               </span>
               <input 
@@ -332,7 +319,7 @@ async function handleSubmit() {
   text-align: center;
   color: #7c6a5b;
   
-  svg {
+  .material-icon {
     color: #e0d8cc;
     margin-bottom: 1rem;
   }

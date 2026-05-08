@@ -1,17 +1,13 @@
 <template>
   <header class="header-bar">
     <button class="menu-toggle" @click="toggleMenu" aria-label="Toggle menu">
-      <span class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
+      <MaterialIcon name="menu" :size="28" />
     </button>
-    
-    <!-- Tabs en Home, Logo en otras páginas -->
+
+    <!-- Tabs en Home, Logo en otras paginas -->
     <div v-if="isHomeView" class="header-tabs">
-      <button 
-        v-for="tab in tabs" 
+      <button
+        v-for="tab in tabs"
         :key="tab.id"
         class="tab-btn"
         :class="{ active: activeTab === tab.id }"
@@ -24,25 +20,16 @@
     <div v-else class="logo">
       <router-link to="/">Apricot Outfits</router-link>
     </div>
-    
+
     <div class="header-actions">
       <router-link v-if="isAccountView" to="/settings" class="icon-btn" aria-label="Ajustes">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 1v6m0 6v6m6-11h-6m6 6h-6M7 7l4 4m2 2l4 4M7 17l4-4m2-2l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <MaterialIcon name="menu" :size="28" />
       </router-link>
       <button v-else class="icon-btn" aria-label="Search">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="9" cy="9" r="5" stroke="currentColor" stroke-width="2"/>
-          <path d="M13 13L17 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+        <MaterialIcon name="search" :size="24" />
       </button>
-      <router-link v-if="authStore.isAdmin && !isAccountView" to="/admin" class="icon-btn" aria-label="Administración">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 1v6m0 6v6m6-11h-6m6 6h-6M7 7l4 4m2 2l4 4M7 17l4-4m2-2l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
+      <router-link v-if="authStore.isAdmin && !isAccountView" to="/admin" class="icon-btn" aria-label="Administracion">
+        <MaterialIcon name="admin_panel_settings" :size="24" />
       </router-link>
     </div>
   </header>
@@ -59,7 +46,7 @@ const authStore = useAuthStore()
 const isHomeView = computed(() => route.path === '/')
 const isAccountView = computed(() => route.path === '/account')
 
-const props = defineProps<{
+defineProps<{
   activeTab?: string
   tabs?: Array<{ id: string; label: string; badge?: number | null }>
 }>()
@@ -100,20 +87,10 @@ function toggleMenu() {
   justify-content: center;
   min-width: 44px;
   min-height: 44px;
-}
+  color: #4a4238;
 
-.hamburger-icon {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  
-  span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: #4a4238;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+  &:hover {
+    color: #c67b5c;
   }
 }
 
@@ -121,7 +98,7 @@ function toggleMenu() {
   font-size: 1.25rem;
   font-weight: 600;
   color: #c67b5c;
-  
+
   a {
     color: inherit;
     text-decoration: none;
@@ -134,7 +111,7 @@ function toggleMenu() {
   justify-content: center;
   gap: 1.5rem;
   flex: 1;
-  
+
   @media (min-width: 768px) {
     gap: 2rem;
   }
@@ -153,19 +130,19 @@ function toggleMenu() {
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  
+
   @media (min-width: 768px) {
     font-size: 1rem;
   }
-  
+
   &:hover {
     color: #4a4238;
   }
-  
+
   &.active {
     color: #4a4238;
     font-weight: 500;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -205,7 +182,7 @@ function toggleMenu() {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   &:hover {
     color: #c67b5c;
   }

@@ -7,11 +7,7 @@
       :class="{ 'has-items': cartStore.totalItems > 0 }"
       aria-label="Ver carrito de compras"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="9" cy="21" r="1"/>
-        <circle cx="20" cy="21" r="1"/>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-      </svg>
+      <MaterialIcon name="shopping_cart" :size="26" />
       <span v-if="cartStore.totalItems > 0" class="cart-badge">{{ cartStore.totalItems }}</span>
     </button>
 
@@ -29,19 +25,12 @@
             @click="cartStore.toggleCart()"
             aria-label="Cerrar carrito"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
+            <MaterialIcon name="close" :size="24" />
           </button>
         </div>
 
         <div v-if="cartStore.items.length === 0" class="cart-empty">
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"/>
-            <circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
+          <MaterialIcon name="shopping_cart" :size="64" />
           <p>Tu carrito está vacío</p>
         </div>
 
@@ -63,9 +52,7 @@
                 @click="cartStore.updateQuantity(item.product.id, item.quantity - 1, item.selectedSize)"
                 aria-label="Disminuir cantidad"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"/>
-                </svg>
+                <MaterialIcon name="remove" :size="18" />
               </button>
               <span class="qty-display">{{ item.quantity }}</span>
               <button 
@@ -73,10 +60,7 @@
                 @click="cartStore.updateQuantity(item.product.id, item.quantity + 1, item.selectedSize)"
                 aria-label="Aumentar cantidad"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" y1="5" x2="12" y2="19"/>
-                  <line x1="5" y1="12" x2="19" y2="12"/>
-                </svg>
+                <MaterialIcon name="add" :size="18" />
               </button>
             </div>
           </div>
@@ -267,7 +251,7 @@ const isInCatalog = computed(() => {
   color: #7c6a5b;
   padding: 2rem;
 
-  svg {
+  .material-icon {
     margin-bottom: 1rem;
     opacity: 0.3;
   }

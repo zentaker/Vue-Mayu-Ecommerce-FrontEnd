@@ -6,9 +6,7 @@
       @click="navigateToCreate"
       aria-label="Subir nuevo outfit"
     >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 5v14m-7-7h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-      </svg>
+      <MaterialIcon name="add" :size="32" :weight="500" />
     </button>
   </Transition>
 </template>
@@ -57,11 +55,11 @@ function navigateToCreate() {
     transform: scale(0.95);
   }
   
-  svg {
+  .material-icon {
     transition: transform 0.3s;
   }
   
-  &:hover svg {
+  &:hover .material-icon {
     transform: rotate(90deg);
   }
 }

@@ -38,12 +38,7 @@
     <!-- Tabs (optional for future) -->
     <div class="profile-tabs">
       <div class="tab active">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7"/>
-          <rect x="14" y="3" width="7" height="7"/>
-          <rect x="14" y="14" width="7" height="7"/>
-          <rect x="3" y="14" width="7" height="7"/>
-        </svg>
+        <MaterialIcon name="grid_view" :size="24" />
       </div>
     </div>
 
@@ -59,9 +54,7 @@
         <div class="photo-overlay">
           <div class="overlay-stats">
             <span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
+              <MaterialIcon name="favorite" :size="18" :fill="true" />
               {{ outfit.likes }}
             </span>
           </div>
@@ -70,11 +63,7 @@
       
       <!-- Empty state -->
       <div v-if="userOutfits.length === 0" class="empty-grid">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-          <circle cx="8.5" cy="8.5" r="1.5"/>
-          <polyline points="21 15 16 10 5 21"/>
-        </svg>
+        <MaterialIcon name="image" :size="64" />
         <h3>No hay publicaciones aún</h3>
         <p>Cuando publiques fotos, aparecerán aquí.</p>
       </div>
@@ -272,7 +261,7 @@ function formatVipLevel(level: string): string {
     border-bottom-color: #4a4238;
   }
   
-  svg {
+  .material-icon {
     display: block;
   }
 }
@@ -338,7 +327,7 @@ function formatVipLevel(level: string): string {
     gap: 0.5rem;
   }
   
-  svg {
+  .material-icon {
     flex-shrink: 0;
   }
 }
@@ -352,7 +341,7 @@ function formatVipLevel(level: string): string {
   padding: 4rem 2rem;
   text-align: center;
   
-  svg {
+  .material-icon {
     color: #e0d8cc;
     margin-bottom: 1.5rem;
   }

@@ -23,10 +23,7 @@
       :disabled="!product.available"
       :aria-label="`Agregar ${product.name} al carrito`"
     >
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <path d="M9 2L7 7H2v13a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7h-5l-2-5H9z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <path d="M9 11v6M15 11v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+      <MaterialIcon name="shopping_bag" :size="22" />
     </button>
   </article>
 </template>
@@ -202,7 +199,7 @@ function addToCart() {
     box-shadow: none;
   }
   
-  svg {
+  .material-icon {
     flex-shrink: 0;
   }
 }

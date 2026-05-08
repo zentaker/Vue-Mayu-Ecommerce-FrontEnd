@@ -6,7 +6,7 @@ import {
 } from 'firebase/auth'
 import type { User as FirebaseUser } from 'firebase/auth'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { auth, db } from './config'
+import { auth, db, isFirebaseConfigured } from './config'
 import type { UserRole } from '@/types'
 
 export interface UserProfile {
@@ -30,15 +30,27 @@ export class AuthService {
   }
 
   async signIn(email: string, password: string): Promise<UserProfile> {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Firebase no esta configurado. Agrega las variables VITE_FIREBASE_* en un archivo .env para iniciar sesion.')
+    }
+
     const userCredential = await signInWithEmailAndPassword(auth, email, password)
     return this.getUserProfile(userCredential.user.uid)
   }
 
   async signOut(): Promise<void> {
+    if (!isFirebaseConfigured || !auth) {
+      return
+    }
+
     await signOut(auth)
   }
 
   async createUser(email: string, password: string, role: UserRole = 'user'): Promise<UserProfile> {
+    if (!isFirebaseConfigured || !auth || !db) {
+      throw new Error('Firebase no esta configurado.')
+    }
+
     const userCredential = await createUserWithEmailAndPassword(auth, email, password)
     const userProfile: UserProfile = {
       uid: userCredential.user.uid,
@@ -58,9 +70,11 @@ export class AuthService {
 
   async getUserProfile(uid: string): Promise<UserProfile> {
     try {
-      const userDoc = await getDoc(doc(db, 'users', uid))
-      if (userDoc.exists()) {
-        return userDoc.data() as UserProfile
+      if (db) {
+        const userDoc = await getDoc(doc(db, 'users', uid))
+        if (userDoc.exists()) {
+          return userDoc.data() as UserProfile
+        }
       }
     } catch (error: any) {
       console.warn('Firestore unavailable, using fallback profile:', error.code)
@@ -89,10 +103,19 @@ export class AuthService {
   }
 
   onAuthStateChanged(callback: (user: FirebaseUser | null) => void) {
+    if (!isFirebaseConfigured || !auth) {
+      callback(null)
+      return () => {}
+    }
+
     return onAuthStateChanged(auth, callback)
   }
 
   getCurrentUser(): FirebaseUser | null {
+    if (!isFirebaseConfigured || !auth) {
+      return null
+    }
+
     return auth.currentUser
   }
 }

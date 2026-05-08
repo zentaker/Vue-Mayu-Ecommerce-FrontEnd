@@ -2,9 +2,7 @@
   <div class="post-detail-view" v-if="outfit">
     <div class="post-header">
       <button class="back-btn" @click="goBack">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <MaterialIcon name="arrow_back_ios_new" :size="24" />
       </button>
       <h1 class="sr-only">{{ outfit.title }}</h1>
     </div>
@@ -31,24 +29,15 @@
 
         <div class="post-actions">
           <button class="action-btn" :class="{ liked: isLiked }" @click="toggleLike">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" :fill="isLiked ? 'currentColor' : 'none'" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
+            <MaterialIcon name="favorite" :size="24" :fill="isLiked" />
             <span>{{ formatLikes(outfit.likes + (isLiked ? 1 : 0)) }}</span>
           </button>
           <button class="action-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <MaterialIcon name="chat_bubble" :size="24" />
             <span>{{ comments.length }}</span>
           </button>
           <button class="action-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M8.59 13.51l6.83 3.98m-.01-10.98l-6.82 3.98" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
+            <MaterialIcon name="share" :size="24" />
           </button>
         </div>
 

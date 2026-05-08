@@ -8,10 +8,7 @@
       <!-- User Section -->
       <section class="settings-section">
         <div class="section-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <MaterialIcon name="person" :size="22" />
           <h2>Cuenta</h2>
         </div>
         <div class="user-info-card">
@@ -21,7 +18,7 @@
             class="user-avatar"
           />
           <div class="user-details">
-            <div class="user-name">{{ currentUser?.name || 'Usuario' }}</div>
+            <div class="user-name">{{ currentUser?.displayName || 'Usuario' }}</div>
             <div class="user-email">{{ currentUser?.email || '' }}</div>
             <div class="user-role-badge" :class="currentUser?.role">
               {{ formatRole(currentUser?.role) }}
@@ -33,27 +30,19 @@
       <!-- Account Actions -->
       <section class="settings-section">
         <div class="section-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <MaterialIcon name="tune" :size="22" />
           <h2>Preferencias</h2>
         </div>
         <div class="settings-list">
           <router-link to="/account" class="settings-item">
             <div class="item-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <MaterialIcon name="account_circle" :size="22" />
             </div>
             <div class="item-content">
               <div class="item-title">Mi Perfil</div>
               <div class="item-description">Ver y editar tu información</div>
             </div>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="chevron">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <MaterialIcon class="chevron" name="chevron_right" :size="22" />
           </router-link>
         </div>
       </section>
@@ -61,21 +50,13 @@
       <!-- Logout Section -->
       <section class="settings-section danger-section">
         <div class="section-header">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <MaterialIcon name="logout" :size="22" />
           <h2>Sesión</h2>
         </div>
         <div class="settings-list">
           <button @click="handleLogout" class="settings-item logout-btn">
             <div class="item-icon danger">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <MaterialIcon name="logout" :size="22" />
             </div>
             <div class="item-content">
               <div class="item-title danger">Cerrar Sesión</div>
@@ -173,7 +154,7 @@ function formatRole(role: UserRole | undefined): string {
   padding-bottom: 1rem;
   border-bottom: 1px solid #f0ebe6;
   
-  svg {
+  .material-icon {
     color: #c67b5c;
   }
   
@@ -332,7 +313,7 @@ function formatRole(role: UserRole | undefined): string {
 }
 
 .danger-section {
-  .section-header svg {
+  .section-header .material-icon {
     color: #dc2626;
   }
 }

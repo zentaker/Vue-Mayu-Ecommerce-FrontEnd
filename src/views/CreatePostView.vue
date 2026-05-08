@@ -3,10 +3,7 @@
     <!-- Header -->
     <header class="create-header">
       <button class="back-btn" @click="handleCancel" aria-label="Cancelar">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="19" y1="12" x2="5" y2="12"/>
-          <polyline points="12 19 5 12 12 5"/>
-        </svg>
+        <MaterialIcon name="arrow_back" :size="24" />
       </button>
       <h1>Crear Nuevo Post</h1>
       <button 
@@ -24,11 +21,7 @@
     <div v-if="currentStep === 1" class="step-container permission-step">
       <div class="permission-content">
         <div class="icon-container">
-          <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <polyline points="21 15 16 10 5 21"/>
-          </svg>
+          <MaterialIcon name="photo_library" :size="80" />
         </div>
         <h2>Acceso a tus fotos</h2>
         <p>Necesitamos acceso a tu biblioteca de fotos para que puedas compartir tus mejores outfits.</p>
@@ -60,11 +53,7 @@
             @change="handleFileChange"
             class="file-input"
           />
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="17 8 12 3 7 8"/>
-            <line x1="12" y1="3" x2="12" y2="15"/>
-          </svg>
+          <MaterialIcon name="upload" :size="64" />
           <h3>{{ isDragging ? 'Suelta la foto aquí' : 'Selecciona una foto' }}</h3>
           <p>{{ isDragging ? '¡Suéltala para continuar!' : 'Arrastra y suelta o haz clic para seleccionar' }}</p>
           <small>PNG, JPG o GIF hasta 5MB</small>
@@ -110,10 +99,7 @@
               <span v-for="(tag, index) in formData.tags" :key="index" class="tag-chip">
                 {{ tag }}
                 <button type="button" @click="removeTag(index)" class="tag-remove">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/>
-                    <line x1="6" y1="6" x2="18" y2="18"/>
-                  </svg>
+                  <MaterialIcon name="close" :size="14" />
                 </button>
               </span>
             </div>
@@ -349,7 +335,7 @@ function handlePublish() {
     align-items: center;
     justify-content: center;
     
-    svg {
+    .material-icon {
       color: #c67b5c;
     }
   }
@@ -421,13 +407,13 @@ function handlePublish() {
     border-color: #c67b5c;
     background: #fff5f0;
     
-    svg {
+    .material-icon {
       color: #c67b5c;
       transform: translateY(-4px);
     }
   }
   
-  svg {
+  .material-icon {
     color: #7c6a5b;
     margin-bottom: 1.5rem;
     transition: all 0.3s;
@@ -459,7 +445,7 @@ function handlePublish() {
     border-width: 3px;
     transform: scale(1.02);
     
-    svg {
+    .material-icon {
       color: #c67b5c;
       transform: translateY(-8px) scale(1.1);
     }

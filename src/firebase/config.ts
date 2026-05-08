@@ -46,5 +46,5 @@ if (isFirebaseConfigured) {
   console.warn('Firebase not configured. App will work with local data only.')
 }
 
-export { auth, db, storage }
+export { auth, db, storage, isFirebaseConfigured }
 export default app

@@ -40,10 +40,7 @@
         <div class="content-header">
           <h2>Gestión de Usuarios</h2>
           <button @click="showUserModal = true" class="create-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="5" x2="12" y2="19"/>
-              <line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
+            <MaterialIcon name="person_add" :size="20" />
             Nuevo Usuario
           </button>
         </div>
@@ -119,27 +116,19 @@
             </div>
             <div class="permission-list">
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Ver Home</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Ver Catálogo</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Ver Rewards</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Ver Perfil</span>
               </div>
             </div>
@@ -152,21 +141,15 @@
             </div>
             <div class="permission-list">
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Todos los permisos de User</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Gestionar usuarios</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Moderar contenido</span>
               </div>
             </div>
@@ -179,27 +162,19 @@
             </div>
             <div class="permission-list">
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Todos los permisos de User</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Gestionar productos</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Gestionar inventario</span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#28a745" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check" name="check" :size="20" />
                 <span>Configurar sistema</span>
               </div>
             </div>
@@ -212,15 +187,11 @@
             </div>
             <div class="permission-list">
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c67b5c" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check highlighted" name="check" :size="20" />
                 <span><strong>Acceso completo a todas las funciones</strong></span>
               </div>
               <div class="permission-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c67b5c" stroke-width="2">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
+                <MaterialIcon class="permission-check highlighted" name="check" :size="20" />
                 <span>Staff + Admin + User</span>
               </div>
             </div>
@@ -594,6 +565,14 @@ async function handleLogout() {
   gap: 0.75rem;
   font-size: 0.9375rem;
   color: #4a4238;
+}
+
+.permission-check {
+  color: #28a745;
+
+  &.highlighted {
+    color: #c67b5c;
+  }
 }
 
 .moderation-grid {
